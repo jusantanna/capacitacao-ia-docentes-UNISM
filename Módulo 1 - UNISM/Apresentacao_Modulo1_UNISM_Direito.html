@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capacitação em IA para Docentes de Direito — Módulo 1 · UNISM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="modulo1.css">
+</head>
+<body>
+
+<div class="bg-fx"><svg id="networkSvg" aria-hidden="true"></svg></div>
+<div class="progress-bar" id="progressBar"></div>
+<div class="topic-rail" id="topicRailLabel"></div>
+
+<main class="deck">
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 1 — CAPA -->
+  <!-- ============================================================ -->
+  <section class="slide slide-cover" data-slide="capa">
+    <div class="slide-inner">
+      <span class="cover-badge">Trilha de Capacitação em IA · Módulo 1</span>
+      <h1 class="cover-title">Capacitação em <span class="accent">IA para Docentes de Direito</span></h1>
+      <p class="cover-sub">Fundamentos, Governança e Discernimento em IA Generativa</p>
+      <div class="cover-date">Oficina presencial · 45 minutos</div>
+    </div>
+    <div class="cover-institution">
+      <strong>UNISM</strong>
+      Curso de Direito
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 2 — FACILITADORES -->
+  <!-- ============================================================ -->
+  <section class="slide" data-slide="facilitadores">
+    <div class="slide-inner">
+      <span class="kicker">Quem conduz a capacitação</span>
+      <h2 class="slide-title">Facilitadores</h2>
+      <div class="facilitators-grid">
+
+        <article class="facilitator-card">
+          <img class="avatar" src="Foto Júlia Sant'Anna.jpeg" alt="Foto de Júlia Sant'Anna" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-fallback',textContent:'JS'}))">
+          <h3>Júlia Sant'Anna</h3>
+          <div class="facilitator-role">Analista de Sistemas e Negócios</div>
+          <ul class="bullets">
+            <li><i data-lucide="graduation-cap" class="bullet-icon"></i><span>Graduação em Engenharia Biomédica</span></li>
+            <li><i data-lucide="briefcase" class="bullet-icon"></i><span>Pós-graduação em Liderança e Gestão em Tecnologia</span></li>
+            <li><i data-lucide="building-2" class="bullet-icon"></i><span>Analista de Sistemas e Negócios na Insi Global</span></li>
+            <li><i data-lucide="badge-check" class="bullet-icon"></i><span>Certificação Microsoft AI-900 (Azure AI Fundamentals)</span></li>
+            <li><i data-lucide="bot" class="bullet-icon"></i><span>Experiência prática em automação de processos e IA aplicada a rotinas de negócio</span></li>
+          </ul>
+          <div class="facilitator-contacts">
+            <span>linkedin.com/in/julia-souza-santanna</span>
+            <span>@ju.santanna.ia</span>
+            <span>(55) 99981-5948</span>
+          </div>
+        </article>
+
+        <article class="facilitator-card">
+          <img class="avatar" src="Foto Carlos Sant'Anna.jpeg" alt="Foto de Carlos Sant'Anna" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-fallback',textContent:'CS'}))">
+          <h3>Carlos Sant'Anna</h3>
+          <div class="facilitator-role">Administrador · Professor · Mestre em Engenharia de Produção</div>
+          <ul class="bullets">
+            <li><i data-lucide="calculator" class="bullet-icon"></i><span>Formação em Custos de Serviços</span></li>
+            <li><i data-lucide="gavel" class="bullet-icon"></i><span>Especialista na Lei 14.133</span></li>
+          </ul>
+          <img class="partner-logo" src="Logo SSMAIS.jpeg" alt="Logo da SSMAIS">
+          <div class="facilitator-contacts">
+            <span>@prof.carlossantanna</span>
+            <span>(55) 98422-2016</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 1 — O que é IA generativa, aplicada ao Direito -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider" data-slide="1.0" data-topic="1/9 — O que é IA generativa">
+    <div class="deco-circuit deco-tr" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.4" stroke-width="1.5"><path d="M390 390 L310 350 L270 270"/><path d="M310 350 L230 370"/><path d="M270 270 L190 230 L130 250"/><path d="M270 270 L290 190"/><path d="M190 230 L150 150"/><path d="M290 190 L340 130" stroke-dasharray="3 7"/></g><g stroke="none"><circle cx="390" cy="390" r="4" fill="var(--cyan-400)"/><circle cx="310" cy="350" r="5.5" fill="var(--cyan-300)"/><circle cx="270" cy="270" r="8" fill="var(--blue-500)" opacity="0.85"/><circle cx="230" cy="370" r="3" fill="var(--cyan-400)"/><circle cx="190" cy="230" r="5" fill="var(--cyan-300)"/><circle cx="130" cy="250" r="3" fill="var(--cyan-400)"/><circle cx="290" cy="190" r="4.5" fill="var(--blue-500)"/><circle cx="150" cy="150" r="3" fill="var(--cyan-300)"/><circle cx="340" cy="130" r="3" fill="var(--cyan-400)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 1 de 9</span>
+      <h1 class="cover-title"><span class="accent">O que é IA generativa</span></h1>
+    </div>
+  </section>
+
+<section class="slide" data-slide="1.1" data-topic="1/9 — O que é IA generativa">
+    <div class="deco-circuit deco-br" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.4" stroke-width="1.5"><path d="M390 390 L310 350 L270 270"/><path d="M310 350 L230 370"/><path d="M270 270 L190 230 L130 250"/><path d="M270 270 L290 190"/><path d="M190 230 L150 150"/><path d="M290 190 L340 130" stroke-dasharray="3 7"/></g><g stroke="none"><circle cx="390" cy="390" r="4" fill="var(--cyan-400)"/><circle cx="310" cy="350" r="5.5" fill="var(--cyan-300)"/><circle cx="270" cy="270" r="8" fill="var(--blue-500)" opacity="0.85"/><circle cx="230" cy="370" r="3" fill="var(--cyan-400)"/><circle cx="190" cy="230" r="5" fill="var(--cyan-300)"/><circle cx="130" cy="250" r="3" fill="var(--cyan-400)"/><circle cx="290" cy="190" r="4.5" fill="var(--blue-500)"/><circle cx="150" cy="150" r="3" fill="var(--cyan-300)"/><circle cx="340" cy="130" r="3" fill="var(--cyan-400)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 1 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O que é <span class="accent">IA generativa?</span></h2>
+      <p class="lede">A categoria de IA capaz de criar conteúdo original — sobretudo texto — a partir de um comando (prompt) em linguagem natural. Diferente de uma busca tradicional, que localiza algo que já existe, ela produz uma resposta nova a cada interação.</p>
+      <ul class="bullets">
+        <li><i data-lucide="layers" class="bullet-icon"></i><span>Diferença da busca tradicional: aqui a resposta é <strong>criada</strong>, não apenas localizada</span></li>
+        <li><i data-lucide="sparkles" class="bullet-icon"></i><span>Prevê, palavra por palavra, a continuação mais provável do texto</span></li>
+        <li><i data-lucide="file-text" class="bullet-icon"></i><span>Já é comum na rotina docente: rascunhar uma questão de prova ou resumir uma decisão longa</span></li>
+        <li><i data-lucide="check-circle-2" class="bullet-icon"></i><span>Também serve para dar um primeiro parecer sobre a redação de uma peça de aluno — nunca a palavra final</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1.2" data-topic="1/9 — O que é IA generativa">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 1 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O que muda <span class="accent">na rotina de preparar aula e material</span></h2>
+      <p>O que antes exigia horas de leitura, redação e revisão manual hoje começa a ser resolvido em minutos com um comando em linguagem natural — a etapa de revisão continua sendo do professor.</p>
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>Antes (manual)</th><th>Agora (com IA generativa)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tempo de preparo</td><td>Horas de leitura e redação</td><td>Minutos para um primeiro rascunho</td></tr>
+          <tr><td>Fontes consultadas</td><td>Doutrina, jurisprudência e provas antigas, uma de cada vez</td><td>Várias referências combinadas em uma só conversa</td></tr>
+          <tr><td>Ponto de partida</td><td>Página em branco</td><td>Rascunho para revisar, corrigir e aprofundar</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1.3" data-topic="1/9 — O que é IA generativa">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 1 de 9 · Módulo 1</span>
+      <h2 class="slide-title">IA generativa de texto <span class="accent">e por que isso importa para o Direito</span></h2>
+      <div class="split-compare">
+        <div class="compare-card compare-card--a">
+          <i data-lucide="brain" class="compare-icon"></i>
+          <span class="tag">Modelos de linguagem</span>
+          <h4>LLMs — Claude, ChatGPT, Gemini</h4>
+          <p>Bilhões de parâmetros treinados para prever a próxima palavra mais provável dada a conversa até aquele ponto — inclusive sobre ementas, doutrina e jurisprudência.</p>
+        </div>
+        <div class="compare-card compare-card--b">
+          <i data-lucide="database" class="compare-icon"></i>
+          <span class="tag">Com documento-fonte</span>
+          <h4>RAG — Retrieval-Augmented Generation</h4>
+          <p>A IA consulta um documento que você mesmo anexa — uma lei, um acórdão, uma petição — em vez de responder só da memória do treinamento.</p>
+        </div>
+      </div>
+      <p class="section-label">Por que importa para a rotina jurídica</p>
+      <p>Anexar o PDF de uma lei ou de um acórdão à conversa (RAG) reduz o risco de a IA responder só da memória — e é da memória que vem boa parte do problema de alucinação que veremos mais adiante neste módulo.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1.4" data-topic="1/9 — O que é IA generativa">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 1 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Como funciona <span class="accent">por trás da IA generativa</span></h2>
+      <div class="cols-2">
+        <div>
+          <div class="section-label">Redes neurais e transformer</div>
+          <ul class="bullets">
+            <li><i data-lucide="network" class="bullet-icon"></i><span>Estruturas inspiradas, em termos gerais, no cérebro humano</span></li>
+            <li><i data-lucide="layers" class="bullet-icon"></i><span>Camadas de "neurônios" digitais aprendem padrões complexos da linguagem</span></li>
+            <li><i data-lucide="crosshair" class="bullet-icon"></i><span>Arquitetura <strong>transformer</strong>: identifica as partes mais relevantes de um texto, mesmo distantes entre si — como localizar a tese central em um acórdão de 40 páginas</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="section-label">Como os modelos são treinados</div>
+          <ul class="bullets">
+            <li><i data-lucide="book-open" class="bullet-icon"></i><span><strong>Pré-treinamento:</strong> exposição a volume massivo de texto, incluindo legislação, doutrina e decisões publicadas</span></li>
+            <li><i data-lucide="check-circle-2" class="bullet-icon"></i><span><strong>Ajuste supervisionado:</strong> exemplos de perguntas e respostas ideais</span></li>
+            <li><i data-lucide="thumbs-up" class="bullet-icon"></i><span><strong>RLHF:</strong> avaliadores humanos indicam as melhores respostas geradas</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 2 — Ganhar tempo sem perder critério jurídico -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider" data-slide="2.0" data-topic="2/9 — Ganhar tempo sem perder critério jurídico">
+    <div class="deco-circuit deco-br" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.42" stroke-width="1.5"><rect x="250" y="30" width="110" height="110" rx="16"/><path d="M280 30 V4 M305 30 V4 M330 30 V4 M355 30 V4"/><path d="M280 140 V166 M305 140 V166 M330 140 V166 M355 140 V166"/><path d="M250 60 H220 M250 85 H200 M250 110 H220"/><path d="M360 60 H392 M360 85 H400 M360 110 H392"/></g><g stroke="none"><circle cx="305" cy="85" r="3" fill="var(--cyan-300)"/><circle cx="200" cy="85" r="4.5" fill="var(--cyan-400)"/><circle cx="400" cy="85" r="4.5" fill="var(--blue-500)"/><circle cx="280" cy="4" r="3" fill="var(--blue-500)"/><circle cx="355" cy="166" r="3" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 2 de 9</span>
+      <h1 class="cover-title"><span class="accent">Ganhar tempo sem perder critério jurídico</span></h1>
+    </div>
+  </section>
+
+<section class="slide" data-slide="2.1" data-topic="2/9 — Ganhar tempo sem perder critério jurídico">
+    <div class="deco-circuit deco-tr" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.42" stroke-width="1.5"><rect x="250" y="30" width="110" height="110" rx="16"/><path d="M280 30 V4 M305 30 V4 M330 30 V4 M355 30 V4"/><path d="M280 140 V166 M305 140 V166 M330 140 V166 M355 140 V166"/><path d="M250 60 H220 M250 85 H200 M250 110 H220"/><path d="M360 60 H392 M360 85 H400 M360 110 H392"/></g><g stroke="none"><circle cx="305" cy="85" r="3" fill="var(--cyan-300)"/><circle cx="200" cy="85" r="4.5" fill="var(--cyan-400)"/><circle cx="400" cy="85" r="4.5" fill="var(--blue-500)"/><circle cx="280" cy="4" r="3" fill="var(--blue-500)"/><circle cx="355" cy="166" r="3" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 2 de 9 · Módulo 1</span>
+      <h2 class="slide-title">A mesma ferramenta, <span class="accent">dois resultados</span></h2>
+      <div class="split-compare">
+        <div class="compare-card compare-card--b">
+          <i data-lucide="gauge" class="compare-icon"></i>
+          <span class="tag">Caminho 1</span>
+          <h4>Só ganhar velocidade</h4>
+          <p>Pediu, copiou, entregou. Fez a mesma tarefa em menos tempo.</p>
+          <p><strong>Resultado:</strong> eficiência operacional.</p>
+        </div>
+        <div class="compare-card compare-card--a">
+          <i data-lucide="trending-up" class="compare-icon"></i>
+          <span class="tag">Caminho 2</span>
+          <h4>Aprofundar o entendimento</h4>
+          <p>Usou o tempo livre para revisar o raciocínio, comparar com a doutrina, refinar o argumento.</p>
+          <p><strong>Resultado:</strong> evolução profissional.</p>
+        </div>
+      </div>
+      <div class="section-label">O perigo do atalho</div>
+      <ul class="bullets">
+        <li><i data-lucide="copy" class="bullet-icon"></i><span><strong>Terceirização:</strong> pedir, copiar, entregar ao aluno sem ler — sem processar o próprio raciocínio jurídico</span></li>
+        <li><i data-lucide="zap" class="bullet-icon"></i><span><strong>Só velocidade:</strong> mais rápido em tarefas que já dominava — sem ganho real de compreensão</span></li>
+        <li><i data-lucide="trending-down" class="bullet-icon"></i><span><strong>Atrofia:</strong> perda gradual da capacidade de sustentar um argumento sem apoio da IA</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="2.2" data-topic="2/9 — Ganhar tempo sem perder critério jurídico">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 2 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O que <span class="accent">realmente significa</span> evoluir usando IA</h2>
+      <p class="lede">É sair de cada interação sabendo algo que você não sabia antes, ou enxergando um instituto jurídico por um ângulo novo — não apenas com um texto pronto na mão.</p>
+      <ul class="bullets">
+        <li><i data-lucide="package" class="bullet-icon"></i><span>Pedir conteúdo pronto = a IA só entrega, sem ensinar nada</span></li>
+        <li><i data-lucide="graduation-cap" class="bullet-icon"></i><span>Perguntar <em>por que</em> ela estruturou o argumento daquele jeito = a IA vira um tutor particular</span></li>
+        <li><i data-lucide="star" class="bullet-icon"></i><span>Isso torna o raciocínio jurídico do professor mais completo, não mais dependente</span></li>
+      </ul>
+      <div class="callout-warn">
+        <i data-lucide="alert-triangle" class="callout-icon"></i>
+        <div class="callout-body">
+          <p class="lede">Efeito Dunning-Kruger aplicado ao Direito</p>
+          <p>Ao usar IA para uma área que não domina bem — um ramo do Direito fora da sua especialidade —, a confiança pode subir enquanto a competência real permanece baixa: respostas fluentes dão falsa sensação de domínio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="2.3" data-topic="2/9 — Ganhar tempo sem perder critério jurídico">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 2 de 9 · Módulo 1</span>
+      <h2 class="slide-title">3 mudanças de postura <span class="accent">que fazem a diferença</span></h2>
+      <div class="process-row">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <i data-lucide="help-circle" class="step-icon"></i>
+          <h4>Mude a pergunta</h4>
+          <p>De "me dê a resposta" para "me explique o raciocínio jurídico por trás disso".</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <i data-lucide="flask-conical" class="step-icon"></i>
+          <h4>Teste o que você sabe</h4>
+          <p>Explique um instituto com suas palavras e peça para a IA apontar falhas.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <i data-lucide="eye" class="step-icon"></i>
+          <h4>Peça outras correntes</h4>
+          <p>Peça a visão de doutrinadores ou correntes divergentes sobre o mesmo tema.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <i data-lucide="shield-check" class="callout-icon"></i>
+        <div class="callout-body">
+          <p class="lede">Regra de ouro: usar para acelerar o que já se compreende e para aprender o que ainda não se sabe — nunca para fingir domínio de um tema jurídico que não se domina.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 3 — Vocabulário essencial -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider" data-slide="3.0" data-topic="3/9 — Vocabulário essencial">
+    <div class="deco-circuit deco-bl" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.4"><circle cx="40" cy="360" r="150" stroke="var(--cyan-300)" stroke-opacity="0.32" stroke-dasharray="5 11"/><circle cx="40" cy="360" r="108" stroke="var(--blue-500)" stroke-opacity="0.3" stroke-dasharray="2 9"/><circle cx="40" cy="360" r="64" stroke="var(--cyan-400)" stroke-opacity="0.42"/><path d="M40 250 V296 M136 360 H180" stroke="var(--cyan-400)" stroke-opacity="0.4"/></g><g stroke="none"><circle cx="40" cy="250" r="4" fill="var(--cyan-400)"/><circle cx="180" cy="360" r="4" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 3 de 9</span>
+      <h1 class="cover-title"><span class="accent">Vocabulário essencial</span></h1>
+    </div>
+  </section>
+
+<section class="slide" data-slide="3.1" data-topic="3/9 — Vocabulário essencial">
+    <div class="deco-circuit deco-bl" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.4"><circle cx="40" cy="360" r="150" stroke="var(--cyan-300)" stroke-opacity="0.32" stroke-dasharray="5 11"/><circle cx="40" cy="360" r="108" stroke="var(--blue-500)" stroke-opacity="0.3" stroke-dasharray="2 9"/><circle cx="40" cy="360" r="64" stroke="var(--cyan-400)" stroke-opacity="0.42"/><path d="M40 250 V296 M136 360 H180" stroke="var(--cyan-400)" stroke-opacity="0.4"/></g><g stroke="none"><circle cx="40" cy="250" r="4" fill="var(--cyan-400)"/><circle cx="180" cy="360" r="4" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 3 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Glossário essencial <span class="accent">(parte 1)</span></h2>
+      <div class="glossary">
+        <div class="term"><div class="term-head"><i data-lucide="message-circle" class="term-icon"></i><span class="word">Chatbot</span></div><p>A porta de entrada: o app ou site com o qual você interage — a camada visual entre você e o modelo propriamente dito.</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="brain" class="term-icon"></i><span class="word">LLM</span></div><p>Large Language Model: o "cérebro" treinado com bilhões de textos, incluindo legislação e jurisprudência publicada.</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="terminal" class="term-icon"></i><span class="word">Prompt</span></div><p>O comando ou instrução, em linguagem natural, que inicia qualquer interação com a IA.</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="hash" class="term-icon"></i><span class="word">Token</span></div><p>Unidade de processamento de texto. Em português, ≈ três quartos de uma palavra.</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="history" class="term-icon"></i><span class="word">Janela de contexto</span></div><p>Quanto texto a IA consegue "lembrar" numa mesma conversa — inclui uma petição ou um acórdão colado ali.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="3.2" data-topic="3/9 — Vocabulário essencial">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 3 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Glossário essencial <span class="accent">(parte 2)</span></h2>
+      <div class="glossary">
+        <div class="term"><div class="term-head"><i data-lucide="alert-triangle" class="term-icon"></i><span class="word">Alucinação</span></div><p>O erro confiante: informação jurídica inventada, apresentada com a mesma fluência de uma informação correta — tema central deste módulo.</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="thermometer" class="term-icon"></i><span class="word">Temperatura</span></div><p>Controle de criatividade: baixa gera respostas mais precisas; alta, mais criativas e imprevisíveis.</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="sliders-horizontal" class="term-icon"></i><span class="word">Fine-tuning</span></div><p>Ajuste fino: treinar um modelo genérico com vocabulário e padrão específicos de um contexto.</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="database" class="term-icon"></i><span class="word">RAG</span></div><p>Retrieval-Augmented Generation: a IA consulta um documento que você mesmo forneceu — uma lei, um acórdão — antes de responder.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="3.3" data-topic="3/9 — Vocabulário essencial">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 3 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Assistentes <span class="accent">vs.</span> Agentes de IA</h2>
+      <div class="split-compare">
+        <div class="compare-card compare-card--a">
+          <i data-lucide="user-check" class="compare-icon"></i>
+          <span class="tag">Reativo</span>
+          <h4>Assistente — "me ajude a fazer"</h4>
+          <p>Pergunta e resposta. Sugere e entrega, sem executar nada além disso.</p>
+          <p><em>"Sugira três formas de introduzir o tema de controle de constitucionalidade para uma turma que ainda não viu o assunto."</em> O professor escolhe e aplica.</p>
+        </div>
+        <div class="compare-card compare-card--b">
+          <i data-lucide="bot" class="compare-icon"></i>
+          <span class="tag">Proativo</span>
+          <h4>Agente — "faça por mim"</h4>
+          <p>Autônomo: define os passos e executa uma sequência de ações sem pedir aprovação a cada uma.</p>
+          <p><em>"Leia estas 30 redações e organize um relatório dos erros de argumentação mais recorrentes da turma."</em> O agente executa a sequência.</p>
+        </div>
+      </div>
+      <p class="section-label">Por que a distinção importa</p>
+      <p>Hoje, no Direito, a maior parte do uso ainda é como assistente — isso é normal e esperado nesta etapa. Quanto mais autônoma a IA, maior a responsabilidade do professor de revisar o resultado antes de usá-lo.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 4 — Panorama de plataformas -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider" data-slide="4.0" data-topic="4/9 — Panorama de plataformas">
+    <div class="deco-circuit deco-tr" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.4" stroke-width="1.5"><path d="M390 390 L310 350 L270 270"/><path d="M310 350 L230 370"/><path d="M270 270 L190 230 L130 250"/><path d="M270 270 L290 190"/><path d="M190 230 L150 150"/><path d="M290 190 L340 130" stroke-dasharray="3 7"/></g><g stroke="none"><circle cx="390" cy="390" r="4" fill="var(--cyan-400)"/><circle cx="310" cy="350" r="5.5" fill="var(--cyan-300)"/><circle cx="270" cy="270" r="8" fill="var(--blue-500)" opacity="0.85"/><circle cx="230" cy="370" r="3" fill="var(--cyan-400)"/><circle cx="190" cy="230" r="5" fill="var(--cyan-300)"/><circle cx="130" cy="250" r="3" fill="var(--cyan-400)"/><circle cx="290" cy="190" r="4.5" fill="var(--blue-500)"/><circle cx="150" cy="150" r="3" fill="var(--cyan-300)"/><circle cx="340" cy="130" r="3" fill="var(--cyan-400)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 4 de 9</span>
+      <h1 class="cover-title"><span class="accent">Panorama de plataformas</span></h1>
+    </div>
+  </section>
+
+<section class="slide" data-slide="4.1" data-topic="4/9 — Panorama de plataformas">
+    <div class="deco-circuit deco-bl deco-mirror" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.42" stroke-width="1.5"><rect x="250" y="30" width="110" height="110" rx="16"/><path d="M280 30 V4 M305 30 V4 M330 30 V4 M355 30 V4"/><path d="M280 140 V166 M305 140 V166 M330 140 V166 M355 140 V166"/><path d="M250 60 H220 M250 85 H200 M250 110 H220"/><path d="M360 60 H392 M360 85 H400 M360 110 H392"/></g><g stroke="none"><circle cx="305" cy="85" r="3" fill="var(--cyan-300)"/><circle cx="200" cy="85" r="4.5" fill="var(--cyan-400)"/><circle cx="400" cy="85" r="4.5" fill="var(--blue-500)"/><circle cx="280" cy="4" r="3" fill="var(--blue-500)"/><circle cx="355" cy="166" r="3" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 4 de 9 · Módulo 1</span>
+      <h2 class="slide-title">As três <span class="accent">principais plataformas</span></h2>
+      <div class="cols-3">
+        <div class="card">
+          <i data-lucide="feather" class="card-icon"></i>
+          <span class="tag">Anthropic</span>
+          <h4>Claude</h4>
+          <p>Costuma se destacar em organização de contexto por disciplina e escrita cuidadosa — útil para redigir uma minuta ou revisar a coesão de um texto.</p>
+        </div>
+        <div class="card">
+          <i data-lucide="message-circle" class="card-icon"></i>
+          <span class="tag">OpenAI</span>
+          <h4>ChatGPT</h4>
+          <p>Tem o ecossistema mais amplo hoje e um modo de explicação passo a passo, útil para quem está começando com IA.</p>
+        </div>
+        <div class="card">
+          <i data-lucide="layout-grid" class="card-icon"></i>
+          <span class="tag">Google</span>
+          <h4>Gemini</h4>
+          <p>Integra-se nativamente ao Google Workspace e é forte em documentos longos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="4.2" data-topic="4/9 — Panorama de plataformas">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 4 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Outras <span class="accent">empresas relevantes</span></h2>
+      <ul class="bullets">
+        <li><i data-lucide="globe" class="bullet-icon"></i><span>Outras plataformas relevantes: Meta (Llama), Mistral AI, xAI (Grok), DeepSeek, entre outras</span></li>
+        <li><i data-lucide="refresh-cw" class="bullet-icon"></i><span>A posição de cada uma muda de mês em mês — não existe ranking fixo</span></li>
+      </ul>
+      <div class="section-label">O que importa não é decorar um ranking</div>
+      <p>O que importa é saber os critérios certos para reavaliar a escolha sempre que necessário — são eles que vêm a seguir.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="4.3" data-topic="4/9 — Panorama de plataformas">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 4 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Por que <span class="accent">"verificabilidade" pesa mais</span> no Direito</h2>
+      <p class="lede">A ferramenta cita fonte de forma clara, ou entrega afirmações sem origem rastreável? Para qualquer área isso importa — para o Direito, é decisivo.</p>
+      <div class="panel">
+        <i data-lucide="quote" class="card-icon"></i>
+        <p><strong>Exemplo:</strong> pedir uma jurisprudência sobre um tema é útil; aceitar essa jurisprudência sem checar se ela existe de fato, no órgão e na data indicados, é o erro que vamos ver com mais profundidade na parte central deste módulo.</p>
+      </div>
+      <p>Guarde esse critério — ele volta com força adiante.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="4.4" data-topic="4/9 — Panorama de plataformas">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 4 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Critérios de escolha <span class="accent">para a rotina jurídica</span></h2>
+      <ul class="bullets">
+        <li><i data-lucide="shield-check" class="bullet-icon"></i><span><strong>Proteção de dados:</strong> a plataforma garante que as conversas não são usadas para treinar novos modelos?</span></li>
+        <li><i data-lucide="quote" class="bullet-icon"></i><span><strong>Verificabilidade:</strong> ela cita fonte de forma clara, ou entrega afirmações sem origem rastreável?</span></li>
+        <li><i data-lucide="gauge" class="bullet-icon"></i><span><strong>Curva de aprendizado:</strong> um colega que nunca usou IA consegue começar sem fricção?</span></li>
+      </ul>
+      <div class="callout">
+        <i data-lucide="compass" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">Não existe "a melhor" plataforma — existe a mais adequada para cada tarefa e para o nível de familiaridade de cada colega.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 5 — Governança e ética no uso profissional -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider palette-violet" data-slide="5.0" data-topic="5/9 — Governança e ética no uso profissional">
+    <div class="deco-circuit deco-br" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.42" stroke-width="1.5"><rect x="250" y="30" width="110" height="110" rx="16"/><path d="M280 30 V4 M305 30 V4 M330 30 V4 M355 30 V4"/><path d="M280 140 V166 M305 140 V166 M330 140 V166 M355 140 V166"/><path d="M250 60 H220 M250 85 H200 M250 110 H220"/><path d="M360 60 H392 M360 85 H400 M360 110 H392"/></g><g stroke="none"><circle cx="305" cy="85" r="3" fill="var(--cyan-300)"/><circle cx="200" cy="85" r="4.5" fill="var(--cyan-400)"/><circle cx="400" cy="85" r="4.5" fill="var(--blue-500)"/><circle cx="280" cy="4" r="3" fill="var(--blue-500)"/><circle cx="355" cy="166" r="3" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 5 de 9</span>
+      <h1 class="cover-title"><span class="accent">Governança e ética no uso profissional</span></h1>
+    </div>
+  </section>
+
+<section class="slide palette-violet" data-slide="5.1" data-topic="5/9 — Governança e ética no uso profissional">
+    <div class="deco-circuit deco-bl" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.4"><circle cx="40" cy="360" r="150" stroke="var(--cyan-300)" stroke-opacity="0.32" stroke-dasharray="5 11"/><circle cx="40" cy="360" r="108" stroke="var(--blue-500)" stroke-opacity="0.3" stroke-dasharray="2 9"/><circle cx="40" cy="360" r="64" stroke="var(--cyan-400)" stroke-opacity="0.42"/><path d="M40 250 V296 M136 360 H180" stroke="var(--cyan-400)" stroke-opacity="0.4"/></g><g stroke="none"><circle cx="40" cy="250" r="4" fill="var(--cyan-400)"/><circle cx="180" cy="360" r="4" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 5 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O problema do uso <span class="accent">disperso</span></h2>
+      <p class="lede">Porque cada professor tende a usar a ferramenta que quer, do jeito que aprendeu sozinho — sem um piso comum.</p>
+      <div class="process-row">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <i data-lucide="scale" class="step-icon"></i>
+          <h4>Desigualdade de acesso</h4>
+          <p>Quem já usa IA avança mais rápido; quem não teve contato fica para trás.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <i data-lucide="shield-alert" class="step-icon"></i>
+          <h4>Risco de dados</h4>
+          <p>Fácil inserir dado de um processo real ou de um aluno sem perceber que é sigiloso.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <i data-lucide="shuffle" class="step-icon"></i>
+          <h4>Inconsistência de critério</h4>
+          <p>Colegas aplicando critérios opostos para a mesma situação, sem diretriz institucional.</p>
+        </div>
+      </div>
+      <p>Padronizar não é obrigar a mesma ferramenta para todos — é estabelecer um piso comum do que é permitido, o que exige cuidado redobrado e o que não é aceitável.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="5.2" data-topic="5/9 — Governança e ética no uso profissional">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 5 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Quem decide <span class="accent">e o que uma diretriz responde</span></h2>
+      <p>Governança de IA não deveria depender de cada professor isoladamente — faz sentido ser conduzida pela coordenação do curso em conjunto com o corpo docente, como próximo passo da UNISM.</p>
+      <div class="section-label">Perguntas que uma diretriz precisa responder</div>
+      <div class="glossary">
+        <div class="term"><div class="term-head"><i data-lucide="database" class="term-icon"></i><span class="word">Dados</span></div><p>Que informação de processo, cliente ou aluno pode ou não ser inserida em uma ferramenta de IA?</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="eye" class="term-icon"></i><span class="word">Autoria e transparência</span></div><p>Quando sinalizar material produzido com apoio de IA?</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="check-square" class="term-icon"></i><span class="word">Ferramentas aprovadas</span></div><p>Existe uma lista institucional recomendada?</p></div>
+        <div class="term"><div class="term-head"><i data-lucide="user-check" class="term-icon"></i><span class="word">Revisão humana</span></div><p>Quando uma resposta de IA exige validação antes de chegar ao aluno?</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="5.3" data-topic="5/9 — Governança e ética no uso profissional">
+    <div class="deco-circuit deco-bl" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.4"><circle cx="40" cy="360" r="150" stroke="var(--cyan-300)" stroke-opacity="0.32" stroke-dasharray="5 11"/><circle cx="40" cy="360" r="108" stroke="var(--blue-500)" stroke-opacity="0.3" stroke-dasharray="2 9"/><circle cx="40" cy="360" r="64" stroke="var(--cyan-400)" stroke-opacity="0.42"/><path d="M40 250 V296 M136 360 H180" stroke="var(--cyan-400)" stroke-opacity="0.4"/></g><g stroke="none"><circle cx="40" cy="250" r="4" fill="var(--cyan-400)"/><circle cx="180" cy="360" r="4" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 5 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Já existem <span class="accent">regras concretas</span>, não só princípios</h2>
+      <div class="process-row">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <i data-lucide="landmark" class="step-icon"></i>
+          <h4>USP</h4>
+          <p>Publicou resolução própria sobre uso de IA na produção acadêmica.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <i data-lucide="flask-conical" class="step-icon"></i>
+          <h4>CNPq</h4>
+          <p>Instituiu Política de Integridade na Atividade Científica — uso de IA deve ser informado em todas as etapas.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <i data-lucide="book-open" class="step-icon"></i>
+          <h4>ANDIFES</h4>
+          <p>Lançou guia nacional para orientar o uso de IA no ensino superior.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <i data-lucide="shield-check" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">Três princípios convergentes: autoria humana, transparência e responsabilidade — a mesma lógica vale para o Direito.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="5.4" data-topic="5/9 — Governança e ética no uso profissional">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 5 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Autoria humana <span class="accent">e transparência</span></h2>
+      <div class="split-compare">
+        <div class="compare-card compare-card--a">
+          <i data-lucide="user-check" class="compare-icon"></i>
+          <span class="tag">Princípio 1</span>
+          <h4>A IA nunca assina</h4>
+          <p>O raciocínio jurídico, a interpretação e a decisão final têm que ser do professor. Gerar uma questão ou um parecer inteiro com um prompt e publicar sem revisão crítica não está alinhado a este princípio.</p>
+        </div>
+        <div class="compare-card compare-card--b">
+          <i data-lucide="eye" class="compare-icon"></i>
+          <span class="tag">Princípio 2</span>
+          <h4>Sinalizar, não esconder</h4>
+          <p>Uso não declarado de IA para gerar conteúdo integral pode configurar falta de transparência acadêmica. O problema não é usar — é usar sem declarar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="5.5" data-topic="5/9 — Governança e ética no uso profissional">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 5 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Responsabilidade <span class="accent">e dois contextos práticos</span></h2>
+      <div class="callout-warn">
+        <i data-lucide="gavel" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">Quem assina, responde: se a IA alucinou uma jurisprudência e ela chega a uma prova ou apostila, a responsabilidade é de quem assinou o material — mesmo sem ter percebido o erro antes de usar.</p></div>
+      </div>
+      <div class="split-compare">
+        <div class="compare-card compare-card--a">
+          <i data-lucide="file-text" class="compare-icon"></i>
+          <span class="tag">Uso 1</span>
+          <h4>Materiais didáticos</h4>
+          <p>Provas, slides, listas de questões: o cuidado maior é a verificação de todo fato específico antes de aplicar.</p>
+        </div>
+        <div class="compare-card compare-card--b">
+          <i data-lucide="graduation-cap" class="compare-icon"></i>
+          <span class="tag">Uso 2</span>
+          <h4>Avaliação de trabalhos dos alunos</h4>
+          <p>A mesma régua usada para os próprios docentes vale para julgar o uso de IA pelos alunos em trabalhos e peças.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 6 — Configuração e personalização -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider" data-slide="6.0" data-topic="6/9 — Configuração e personalização">
+    <div class="deco-circuit deco-bl" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.4"><circle cx="40" cy="360" r="150" stroke="var(--cyan-300)" stroke-opacity="0.32" stroke-dasharray="5 11"/><circle cx="40" cy="360" r="108" stroke="var(--blue-500)" stroke-opacity="0.3" stroke-dasharray="2 9"/><circle cx="40" cy="360" r="64" stroke="var(--cyan-400)" stroke-opacity="0.42"/><path d="M40 250 V296 M136 360 H180" stroke="var(--cyan-400)" stroke-opacity="0.4"/></g><g stroke="none"><circle cx="40" cy="250" r="4" fill="var(--cyan-400)"/><circle cx="180" cy="360" r="4" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 6 de 9</span>
+      <h1 class="cover-title"><span class="accent">Configuração e personalização</span></h1>
+    </div>
+  </section>
+
+<section class="slide" data-slide="6.1" data-topic="6/9 — Configuração e personalização">
+    <div class="deco-circuit deco-bl deco-mirror" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.4" stroke-width="1.5"><path d="M390 390 L310 350 L270 270"/><path d="M310 350 L230 370"/><path d="M270 270 L190 230 L130 250"/><path d="M270 270 L290 190"/><path d="M190 230 L150 150"/><path d="M290 190 L340 130" stroke-dasharray="3 7"/></g><g stroke="none"><circle cx="390" cy="390" r="4" fill="var(--cyan-400)"/><circle cx="310" cy="350" r="5.5" fill="var(--cyan-300)"/><circle cx="270" cy="270" r="8" fill="var(--blue-500)" opacity="0.85"/><circle cx="230" cy="370" r="3" fill="var(--cyan-400)"/><circle cx="190" cy="230" r="5" fill="var(--cyan-300)"/><circle cx="130" cy="250" r="3" fill="var(--cyan-400)"/><circle cx="290" cy="190" r="4.5" fill="var(--blue-500)"/><circle cx="150" cy="150" r="3" fill="var(--cyan-300)"/><circle cx="340" cy="130" r="3" fill="var(--cyan-400)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 6 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O custo de <span class="accent">não configurar a IA</span> para a disciplina</h2>
+      <p class="lede">Sem configuração prévia, toda conversa começa do zero — o professor reexplica a ementa, o padrão de correção e o nível da turma a cada pergunta.</p>
+      <p>É o equivalente a treinar um assistente novo todo dia.</p>
+      <div class="callout">
+        <i data-lucide="lightbulb" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">As três plataformas resolvem isso com um espaço persistente: instruções fixas e arquivos de referência que valem automaticamente em toda conversa daquele espaço.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="6.2" data-topic="6/9 — Configuração e personalização">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 6 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O mesmo conceito, <span class="accent">três nomes diferentes</span></h2>
+      <table class="compare">
+        <thead><tr><th>Plataforma</th><th>Funcionalidade</th><th>Como funciona</th></tr></thead>
+        <tbody>
+          <tr><td>Claude</td><td>Projects</td><td>Instruções + base de arquivos + conversas organizadas no espaço</td></tr>
+          <tr><td>Gemini</td><td>Gems</td><td>Versão personalizada e reutilizável, até 10 arquivos — disponível no plano gratuito</td></tr>
+          <tr><td>ChatGPT</td><td>Projects / Custom GPTs</td><td>Organiza conversas e arquivos; Custom GPTs cria um assistente autônomo compartilhável</td></tr>
+        </tbody>
+      </table>
+      <p>O nome muda, mas a lógica de uso para o docente de Direito é a mesma nas três plataformas.</p>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="6.3" data-topic="6/9 — Configuração e personalização">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 6 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Exemplo aplicado <span class="accent">e cuidados institucionais</span></h2>
+      <p class="lede">Um professor cria um espaço por disciplina, alimentado com a ementa, a bibliografia, o padrão de linguagem e provas já aplicadas.</p>
+      <p>Qualquer pedido feito ali já parte com esse contexto — sem descrever tudo de novo a cada vez.</p>
+      <div class="callout-warn">
+        <i data-lucide="shield-alert" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">Atenção: esses arquivos ficam na conta pessoal do professor. Nunca incluir nome de parte, número de processo, CPF ou dado sensível de aluno (LGPD, art. 5º, II) — apenas material de ensino já anonimizado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 7 — Sigilo, LGPD e alucinação em pesquisa jurídica (núcleo do módulo) -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider palette-violet" data-slide="7.0" data-topic="7/9 — Sigilo, LGPD e alucinação em pesquisa jurídica">
+    <div class="deco-circuit deco-tr" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.4" stroke-width="1.5"><path d="M390 390 L310 350 L270 270"/><path d="M310 350 L230 370"/><path d="M270 270 L190 230 L130 250"/><path d="M270 270 L290 190"/><path d="M190 230 L150 150"/><path d="M290 190 L340 130" stroke-dasharray="3 7"/></g><g stroke="none"><circle cx="390" cy="390" r="4" fill="var(--cyan-400)"/><circle cx="310" cy="350" r="5.5" fill="var(--cyan-300)"/><circle cx="270" cy="270" r="8" fill="var(--blue-500)" opacity="0.85"/><circle cx="230" cy="370" r="3" fill="var(--cyan-400)"/><circle cx="190" cy="230" r="5" fill="var(--cyan-300)"/><circle cx="130" cy="250" r="3" fill="var(--cyan-400)"/><circle cx="290" cy="190" r="4.5" fill="var(--blue-500)"/><circle cx="150" cy="150" r="3" fill="var(--cyan-300)"/><circle cx="340" cy="130" r="3" fill="var(--cyan-400)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 7 de 9</span>
+      <h1 class="cover-title"><span class="accent">Sigilo, LGPD e alucinação em pesquisa jurídica</span></h1>
+    </div>
+  </section>
+
+<section class="slide palette-violet" data-slide="7.1" data-topic="7/9 — Sigilo, LGPD e alucinação em pesquisa jurídica">
+    <div class="deco-circuit deco-tr" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.42" stroke-width="1.5"><rect x="250" y="30" width="110" height="110" rx="16"/><path d="M280 30 V4 M305 30 V4 M330 30 V4 M355 30 V4"/><path d="M280 140 V166 M305 140 V166 M330 140 V166 M355 140 V166"/><path d="M250 60 H220 M250 85 H200 M250 110 H220"/><path d="M360 60 H392 M360 85 H400 M360 110 H392"/></g><g stroke="none"><circle cx="305" cy="85" r="3" fill="var(--cyan-300)"/><circle cx="200" cy="85" r="4.5" fill="var(--cyan-400)"/><circle cx="400" cy="85" r="4.5" fill="var(--blue-500)"/><circle cx="280" cy="4" r="3" fill="var(--blue-500)"/><circle cx="355" cy="166" r="3" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 7 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O dado que <span class="accent">sai do seu controle</span></h2>
+      <div class="lede-row">
+        <i data-lucide="lock" class="lede-icon"></i>
+        <p class="lede">O advogado, o professor de Direito e a instituição de ensino lidam com informação protegida por sigilo profissional (art. 34 do Estatuto da OAB) e por dados pessoais protegidos pela LGPD (Lei nº 13.709/2018).</p>
+      </div>
+      <p>Usar IA generativa na rotina docente não suspende nenhuma dessas obrigações — exige atenção redobrada, porque o dado inserido em uma ferramenta de IA sai do controle direto do professor.</p>
+      <div class="callout-warn">
+        <i data-lucide="alert-triangle" class="callout-icon"></i>
+        <div class="callout-body">
+          <p class="lede">O que nunca inserir em uma ferramenta de IA pessoal:</p>
+          <p>Nome de parte de um processo real combinado a dados do caso;</p>
+          <p>Número de processo, CPF ou qualquer identificador de cliente, aluno ou terceiro;</p>
+          <p>Dado sensível (LGPD, art. 5º, II) — inclusive quando mencionado por um aluno, como um laudo que justifica adaptação de prova.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="7.2" data-topic="7/9 — Sigilo, LGPD e alucinação em pesquisa jurídica">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 7 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Antes e depois: <span class="accent">anonimização na prática</span></h2>
+      <div class="split-compare">
+        <div class="compare-card compare-card--a">
+          <i data-lucide="user-x" class="compare-icon"></i>
+          <span class="tag">Evitar</span>
+          <h4>Identifica a parte e o processo</h4>
+          <p><em>"O cliente João da Silva, no processo 0001234-56, alega que..."</em></p>
+        </div>
+        <div class="compare-card compare-card--b">
+          <i data-lucide="shield-check" class="compare-icon"></i>
+          <span class="tag">Recomendado</span>
+          <h4>Preserva o conteúdo jurídico</h4>
+          <p><em>"Em uma ação de indenização por dano moral, a parte autora alega que..."</em></p>
+        </div>
+      </div>
+      <p>O conteúdo jurídico da discussão não se perde com a anonimização — só a identificação desaparece.</p>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="7.3" data-topic="7/9 — Sigilo, LGPD e alucinação em pesquisa jurídica">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 7 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Alucinação: <span class="accent">o erro confiante</span> em pesquisa jurídica</h2>
+      <p class="lede">A IA gera uma informação inventada, mas apresentada com a mesma fluência e confiança de uma informação verdadeira. No Direito, uma citação errada tem consequência prática imediata.</p>
+      <div class="section-label">Sinais de alerta e prática de verificação</div>
+      <ul class="bullets">
+        <li><i data-lucide="search" class="bullet-icon"></i><span>Desconfiar do que parece bom demais: uma jurisprudência "perfeita" para o argumento, encontrada rápido demais</span></li>
+        <li><i data-lucide="quote" class="bullet-icon"></i><span>Pedir a fonte específica (número do processo, órgão julgador, data) e confirmar diretamente na fonte oficial</span></li>
+        <li><i data-lucide="ban" class="bullet-icon"></i><span>Nunca aceitar uma citação de lei, súmula ou julgado sem checagem — regra sem exceção para material que vai ao aluno</span></li>
+      </ul>
+      <div class="callout-warn">
+        <i data-lucide="alert-triangle" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">Perguntar à própria IA se ela está certa não é verificação — ela pode alucinar a confirmação com a mesma facilidade com que alucinou o erro original.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="7.4" data-topic="7/9 — Sigilo, LGPD e alucinação em pesquisa jurídica">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 7 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Caso real: <span class="accent">Mata v. Avianca</span></h2>
+      <p class="lede">Estados Unidos, 2023.</p>
+      <div class="process-row">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <i data-lucide="file-text" class="step-icon"></i>
+          <h4>Pediu pesquisa</h4>
+          <p>Um advogado usou o ChatGPT para preparar uma petição.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <i data-lucide="alert-triangle" class="step-icon"></i>
+          <h4>A IA inventou os casos</h4>
+          <p>Seis casos jurídicos inteiros, com nomes de juízes reais e citações que pareciam legítimas.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <i data-lucide="gavel" class="step-icon"></i>
+          <h4>Consequência disciplinar</h4>
+          <p>Multa de 5 mil dólares e reprimenda judicial ao advogado.</p>
+        </div>
+      </div>
+      <div class="callout-warn">
+        <i data-lucide="shield-alert" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">O detalhe mais importante: o advogado, desconfiado, perguntou à própria IA se os casos eram reais — e ela confirmou que sim, também de forma alucinada.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="7.5" data-topic="7/9 — Sigilo, LGPD e alucinação em pesquisa jurídica">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 7 de 9 · Módulo 1</span>
+      <h2 class="slide-title">No Brasil, <span class="accent">o mesmo padrão já aconteceu</span></h2>
+      <p class="lede">Mais de um caso reportado na imprensa jurídica nacional envolveu peças com jurisprudência inexistente gerada por IA. O risco não é hipotético nem estrangeiro.</p>
+      <div class="split-compare">
+        <div class="compare-card compare-card--a">
+          <i data-lucide="alert-circle" class="compare-icon"></i>
+          <span class="tag">Consequência 1</span>
+          <h4>Advertência disciplinar</h4>
+          <p>Aplicada a advogados que apresentaram jurisprudência inventada sem checagem prévia.</p>
+        </div>
+        <div class="compare-card compare-card--b">
+          <i data-lucide="gavel" class="compare-icon"></i>
+          <span class="tag">Consequência 2</span>
+          <h4>Condenação por litigância de má-fé</h4>
+          <p>Em alguns casos, o uso de citação fabricada resultou em condenação processual.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 8 — Sicofania -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider palette-neutral" data-slide="8.0" data-topic="8/9 — Sicofania">
+    <div class="deco-circuit deco-bl" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.4"><circle cx="40" cy="360" r="150" stroke="var(--cyan-300)" stroke-opacity="0.32" stroke-dasharray="5 11"/><circle cx="40" cy="360" r="108" stroke="var(--blue-500)" stroke-opacity="0.3" stroke-dasharray="2 9"/><circle cx="40" cy="360" r="64" stroke="var(--cyan-400)" stroke-opacity="0.42"/><path d="M40 250 V296 M136 360 H180" stroke="var(--cyan-400)" stroke-opacity="0.4"/></g><g stroke="none"><circle cx="40" cy="250" r="4" fill="var(--cyan-400)"/><circle cx="180" cy="360" r="4" fill="var(--cyan-300)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 8 de 9</span>
+      <h1 class="cover-title"><span class="accent">Sicofania: por que a IA concorda demais</span></h1>
+    </div>
+  </section>
+
+<section class="slide slide-quote palette-neutral" data-slide="8.1" data-topic="8/9 — Sicofania">
+    <div class="deco-circuit deco-center" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.2"><circle cx="200" cy="200" r="180" stroke="var(--cyan-300)" stroke-opacity="0.3" stroke-dasharray="4 14"/><circle cx="200" cy="200" r="130" stroke="var(--blue-500)" stroke-opacity="0.26" stroke-dasharray="2 11"/><circle cx="200" cy="200" r="80" stroke="var(--cyan-400)" stroke-opacity="0.32"/></g><g stroke="none"><circle cx="200" cy="20" r="4" fill="var(--cyan-400)"/><circle cx="380" cy="200" r="4" fill="var(--cyan-300)"/><circle cx="200" cy="380" r="4" fill="var(--blue-500)"/><circle cx="20" cy="200" r="3.5" fill="var(--cyan-400)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 8 de 9 · Módulo 1</span>
+      <i data-lucide="repeat" class="quote-icon"></i>
+      <p class="quote-text">Sicofania é a tendência de um modelo de IA <span class="accent">concordar com o usuário</span>, validar uma tese mesmo quando está errada, e mudar de posição sob pressão só para parecer mais agradável.</p>
+      <p class="lede" style="max-width:44rem;">É efeito colateral do próprio treinamento com feedback humano: avaliadores recompensam respostas que "soam bem" — e concordar soa melhor do que discordar.</p>
+      <div class="stat-row" style="justify-content:center; margin-top: clamp(1rem, 3vh, 2rem);">
+        <div class="stat"><span class="num">60%</span><span class="label">das vezes o modelo muda a resposta ao ouvir "você tem certeza?" — mesmo estando correto</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide palette-violet" data-slide="8.2" data-topic="8/9 — Sicofania">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 8 de 9 · Módulo 1</span>
+      <h2 class="slide-title">O efeito amplificador, <span class="accent">aplicado ao Direito</span></h2>
+      <p class="lede">O risco maior não é a IA errar — é a IA confirmar uma tese que o próprio professor já trazia pronta.</p>
+      <ul class="bullets">
+        <li><i data-lucide="repeat" class="bullet-icon"></i><span>Se o professor já está convencido de uma tese, a IA tende a reforçar, não a questionar</span></li>
+        <li><i data-lucide="scale" class="bullet-icon"></i><span>Especialmente delicado quando existe jurisprudência ou doutrina em sentido contrário</span></li>
+        <li><i data-lucide="flask-conical" class="bullet-icon"></i><span>Na pesquisa acadêmica, compromete o rigor: um assistente que corrobora hipóteses em vez de testá-las</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="8.3" data-topic="8/9 — Sicofania">
+    <div class="slide-inner">
+      <span class="kicker">Tópico 8 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Como manter <span class="accent">postura crítica</span></h2>
+      <div class="process-row process-row--4">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <i data-lucide="rotate-ccw" class="step-icon"></i>
+          <h4>Peça o contrário</h4>
+          <p>"Quais os três maiores riscos ou contra-argumentos dessa tese?"</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <i data-lucide="alert-circle" class="step-icon"></i>
+          <h4>Desconfie da concordância fácil</h4>
+          <p>É sinal de alerta, não confirmação.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <i data-lucide="users" class="step-icon"></i>
+          <h4>Peça perspectivas divergentes</h4>
+          <p>Outras correntes doutrinárias antes de fechar posição.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">4</span>
+          <i data-lucide="help-circle" class="step-icon"></i>
+          <h4>Não busque validação</h4>
+          <p>Evite perguntar "tem certeza?" esperando confirmação.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <i data-lucide="shield-check" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">Tratar a concordância da IA como ponto de partida para revisão — nunca como validação final de uma tese jurídica.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TÓPICO 9 — Discernimento entre hype e tecnologia estrutural -->
+  <!-- ============================================================ -->
+
+    <section class="slide slide-cover topic-divider" data-slide="9.0" data-topic="9/9 — Hype vs. tecnologia estrutural">
+    <div class="deco-circuit deco-tr" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke="var(--cyan-400)" stroke-opacity="0.4" stroke-width="1.5"><path d="M390 390 L310 350 L270 270"/><path d="M310 350 L230 370"/><path d="M270 270 L190 230 L130 250"/><path d="M270 270 L290 190"/><path d="M190 230 L150 150"/><path d="M290 190 L340 130" stroke-dasharray="3 7"/></g><g stroke="none"><circle cx="390" cy="390" r="4" fill="var(--cyan-400)"/><circle cx="310" cy="350" r="5.5" fill="var(--cyan-300)"/><circle cx="270" cy="270" r="8" fill="var(--blue-500)" opacity="0.85"/><circle cx="230" cy="370" r="3" fill="var(--cyan-400)"/><circle cx="190" cy="230" r="5" fill="var(--cyan-300)"/><circle cx="130" cy="250" r="3" fill="var(--cyan-400)"/><circle cx="290" cy="190" r="4.5" fill="var(--blue-500)"/><circle cx="150" cy="150" r="3" fill="var(--cyan-300)"/><circle cx="340" cy="130" r="3" fill="var(--cyan-400)"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="cover-badge">Módulo 1 · Tópico 9 de 9</span>
+      <h1 class="cover-title"><span class="accent">Hype vs. tecnologia estrutural</span></h1>
+    </div>
+  </section>
+
+<section class="slide palette-neutral" data-slide="9.1" data-topic="9/9 — Hype vs. tecnologia estrutural">
+    <div class="deco-circuit deco-br deco-lg" aria-hidden="true"><svg viewBox="0 0 400 400"><g fill="none" stroke-width="1.4"><circle cx="340" cy="340" r="150" stroke="var(--cyan-300)" stroke-opacity="0.3" stroke-dasharray="5 12"/><circle cx="340" cy="340" r="105" stroke="var(--blue-500)" stroke-opacity="0.28" stroke-dasharray="2 9"/><circle cx="340" cy="340" r="62" stroke="var(--cyan-400)" stroke-opacity="0.4"/><path d="M340 190 V225 M190 340 H225" stroke="var(--cyan-400)" stroke-opacity="0.38"/><path d="M255 255 L205 205" stroke="var(--cyan-300)" stroke-opacity="0.35" stroke-dasharray="3 7"/></g><g stroke="none"><circle cx="340" cy="190" r="4.5" fill="var(--cyan-400)"/><circle cx="190" cy="340" r="4" fill="var(--cyan-300)"/><circle cx="205" cy="205" r="3.5" fill="var(--cyan-300)"/><circle cx="340" cy="340" r="6" fill="var(--blue-500)" opacity="0.85"/></g></svg></div>
+    <div class="slide-inner">
+      <span class="kicker">Tópico 9 de 9 · Módulo 1</span>
+      <h2 class="slide-title">Critérios práticos <span class="accent">e fechamento do módulo</span></h2>
+      <p class="lede">O setor de IA lança novidade praticamente todo mês. O risco não é ficar para trás — é dispersar tempo perseguindo cada lançamento sem critério. Antes de investir tempo aprendendo uma ferramenta nova, faça esta pergunta: <em>isso já provou valor real e sustentado, ou ainda está só gerando expectativa?</em></p>
+      <div class="process-row process-row--4">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <i data-lucide="target" class="step-icon"></i>
+          <h4>Problema real</h4>
+          <p>Resolve algo real e recorrente na sua rotina, ou só parece interessante?</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <i data-lucide="calendar" class="step-icon"></i>
+          <h4>Uso sustentado</h4>
+          <p>Já provou valor real e sustentado, ou ainda está só gerando expectativa?</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <i data-lucide="shield-check" class="step-icon"></i>
+          <h4>Compatível com a governança</h4>
+          <p>Segue as diretrizes já discutidas, ou exige exceções?</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">4</span>
+          <i data-lucide="gauge" class="step-icon"></i>
+          <h4>Vale o aprendizado</h4>
+          <p>O ganho justifica o tempo necessário para aprender a usar?</p>
+        </div>
+      </div>
+      <div class="callout">
+        <i data-lucide="layers" class="callout-icon"></i>
+        <div class="callout-body"><p class="lede">Agentes de IA aplicados à advocacia e à docência jurídica ainda estão em fase de maturação — vale acompanhar. Este módulo construiu o alicerce que vem primeiro: sigilo e LGPD, verificação de fonte e postura crítica diante da concordância fácil da IA.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="nav-controls">
+  <button class="nav-btn" id="prevBtn" aria-label="Slide anterior" title="Slide anterior (←)">
+    <i data-lucide="chevron-left"></i>
+  </button>
+  <span class="slide-counter" id="slideCounter">1 / 42</span>
+  <button class="nav-btn" id="nextBtn" aria-label="Próximo slide" title="Próximo slide (→)">
+    <i data-lucide="chevron-right"></i>
+  </button>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="modulo1.js"></script>
+</body>
+</html>

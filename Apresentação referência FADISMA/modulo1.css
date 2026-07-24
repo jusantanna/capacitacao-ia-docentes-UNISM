@@ -1,0 +1,1331 @@
+/* ============================================================
+   Capacitação em IA para Docentes — Módulo 1
+   Identidade visual: gradientes tecnológicos azul/ciano
+   ============================================================ */
+
+:root {
+  --bg-deep: #050a18;
+  --bg-mid: #0a1330;
+  --bg-panel: #0d1940;
+  --blue-900: #071231;
+  --blue-700: #1442ad;
+  --blue-500: #2f6fed;
+  --cyan-400: #22e5ff;
+  --cyan-300: #6ff2ff;
+  --cyan-glow: rgba(34, 229, 255, 0.35);
+  --ink-100: #f4f8ff;
+  --ink-300: #cbd8f0;
+  --ink-500: #8fa3c9;
+  --ink-700: #5b6d94;
+  --line: rgba(120, 170, 255, 0.18);
+  --glass: rgba(18, 32, 68, 0.55);
+  --glass-solid: rgba(13, 25, 64, 0.92);
+  --radius: 1.1rem;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Accent RGB triplets (no alpha) so component rgba() backgrounds/borders can be
+     re-tinted per palette variant below without duplicating every rule. */
+  --accent-a-rgb: 34, 229, 255;    /* cyan-400 tone */
+  --accent-b-rgb: 47, 111, 237;    /* blue-500 tone */
+  --accent-bright-rgb: 111, 242, 255; /* cyan-300 tone */
+  --accent-b-text: #a7c1ff;
+}
+
+/* ============================================================
+   Palette variants — same navy backdrop, different accent hue.
+   Applied per-slide via a class on .slide; overrides cascade to
+   every descendant because all components reference these vars.
+   ============================================================ */
+.slide.palette-violet {
+  --cyan-400: #c084fc;
+  --cyan-300: #e4cbff;
+  --blue-500: #7c3aed;
+  --cyan-glow: rgba(192, 132, 252, 0.35);
+  --line: rgba(180, 120, 250, 0.22);
+  --accent-a-rgb: 192, 132, 252;
+  --accent-b-rgb: 124, 58, 237;
+  --accent-bright-rgb: 228, 203, 255;
+  --accent-b-text: #d6bbfc;
+}
+.slide.palette-neutral {
+  --cyan-400: #eef2fb;
+  --cyan-300: #ffffff;
+  --blue-500: #b9c6e6;
+  --cyan-glow: rgba(238, 242, 251, 0.22);
+  --line: rgba(255, 255, 255, 0.18);
+  --accent-a-rgb: 238, 242, 251;
+  --accent-b-rgb: 185, 198, 230;
+  --accent-bright-rgb: 255, 255, 255;
+  --accent-b-text: #dbe3f5;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg-deep);
+  color: var(--ink-100);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+body.printing { overflow: visible; }
+
+::selection { background: var(--cyan-glow); color: #fff; }
+
+/* ---------- Background neural texture ---------- */
+.bg-fx {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(47, 111, 237, 0.25), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(34, 229, 255, 0.18), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(20, 66, 173, 0.28), transparent 50%),
+    linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 55%, var(--blue-900) 100%);
+}
+
+.bg-fx svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.35; }
+.bg-fx .node { fill: var(--cyan-400); filter: drop-shadow(0 0 6px var(--cyan-glow)); }
+.bg-fx .edge { stroke: var(--cyan-300); stroke-width: 0.6; opacity: 0.35; }
+
+/* ---------- Deck & slide shell ---------- */
+.deck {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.5rem, 4.5vh, 4rem) clamp(1.5rem, 7vw, 6rem);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(2.5vw) scale(0.99);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+}
+
+.slide.leaving {
+  transform: translateX(-2.5vw) scale(0.99);
+}
+
+/* Per-slide glow variant — subtle positional/intensity variety across the deck,
+   same cyan/blue palette, just relocated so slides don't look like exact copies. */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 16%), var(--glow-color, rgba(34, 229, 255, 0.11)), transparent 55%);
+}
+.slide.glow-1 { --gx: 22%; --gy: 12%; --glow-color: rgba(34, 229, 255, 0.15); }
+.slide.glow-2 { --gx: 82%; --gy: 8%;  --glow-color: rgba(47, 111, 237, 0.17); }
+.slide.glow-3 { --gx: 50%; --gy: 92%; --glow-color: rgba(34, 229, 255, 0.10); }
+.slide.glow-4 { --gx: 78%; --gy: 78%; --glow-color: rgba(47, 111, 237, 0.14); }
+.slide.glow-5 { --gx: 12%; --gy: 82%; --glow-color: rgba(111, 242, 255, 0.12); }
+.slide.glow-6 { --gx: 65%; --gy: 30%; --glow-color: rgba(147, 90, 240, 0.15); }
+
+.slide-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 78rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------- Kicker / eyebrow ---------- */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan-300);
+  margin-bottom: clamp(0.8rem, 2vh, 1.4rem);
+}
+
+.kicker::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--cyan-400);
+  box-shadow: 0 0 10px 2px var(--cyan-glow);
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; margin: 0; line-height: 1.12; }
+
+.slide-title {
+  font-size: clamp(1.6rem, 3.6vw, 2.7rem);
+  color: var(--ink-100);
+  margin-bottom: clamp(0.8rem, 2.2vh, 1.6rem);
+  letter-spacing: -0.01em;
+}
+
+.slide-title .accent {
+  background: linear-gradient(90deg, var(--cyan-300), var(--blue-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.slide-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--ink-300);
+  font-weight: 400;
+  margin-bottom: clamp(1rem, 2.5vh, 1.8rem);
+  max-width: 52rem;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  color: var(--cyan-300);
+  margin: clamp(0.9rem, 2vh, 1.3rem) 0 clamp(0.5rem, 1.2vh, 0.8rem);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.section-label::before { content: "◆"; font-size: 0.65em; color: var(--blue-500); }
+
+/* ---------- Body text ---------- */
+p { color: var(--ink-300); line-height: 1.55; font-size: clamp(0.85rem, 1.15vw, 1.05rem); margin: 0 0 clamp(0.7rem, 1.8vh, 1.05rem); }
+.lede { font-size: clamp(0.95rem, 1.35vw, 1.2rem); color: var(--ink-100); }
+
+/* ---------- Bullet lists ---------- */
+ul.bullets { list-style: none; margin: 0 0 clamp(1rem, 2.4vh, 1.5rem); padding: 0; display: grid; gap: clamp(0.5rem, 1.3vh, 0.85rem); }
+ul.bullets li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  color: var(--ink-300);
+  line-height: 1.45;
+}
+ul.bullets li strong { color: var(--ink-100); font-weight: 600; }
+ul.bullets li > span { flex: 1 1 auto; min-width: 0; }
+.bullet-icon {
+  flex: 0 0 auto;
+  width: 1.15em;
+  height: 1.15em;
+  margin-top: 0.15em;
+  color: var(--cyan-400);
+  filter: drop-shadow(0 0 5px var(--cyan-glow));
+  stroke-width: 2;
+}
+ul.bullets li:nth-child(3n+2) .bullet-icon { color: var(--cyan-300); }
+ul.bullets li:nth-child(3n+3) .bullet-icon { color: var(--blue-500); }
+/* Fallback dot for any bullet without an icon (kept only for legacy safety) */
+ul.bullets li.no-icon { padding-left: 1.6rem; }
+ul.bullets li.no-icon::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--cyan-400), var(--blue-500));
+  box-shadow: 0 0 8px var(--cyan-glow);
+  transform: rotate(45deg);
+}
+
+.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 2.2rem); margin-bottom: clamp(1rem, 2.4vh, 1.5rem); }
+.cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.8rem, 2vw, 1.6rem); margin-bottom: clamp(1rem, 2.4vh, 1.5rem); }
+
+@media (max-width: 900px) {
+  .cols-2, .cols-3 { grid-template-columns: 1fr; }
+}
+
+/* ---------- Cards / panels ---------- */
+.panel {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 2.2vw, 1.7rem);
+  backdrop-filter: blur(10px);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+}
+
+/* ---------- Supporting figure (image alongside text, non-central) ---------- */
+.slide-figure-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2rem);
+}
+.slide-figure-row .figure-text { flex: 1 1 60%; }
+.support-figure {
+  flex: 0 0 clamp(9rem, 20vw, 13rem);
+  margin: 0;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+.support-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 0.4rem);
+  object-fit: cover;
+}
+@media (max-width: 900px) {
+  .slide-figure-row { flex-direction: column; }
+  .support-figure { flex: 0 0 auto; max-width: 12rem; }
+}
+
+.card {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  position: relative;
+  overflow: hidden;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, var(--cyan-glow), transparent 70%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+.card h4 {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--cyan-300);
+  margin-bottom: 0.5rem;
+}
+.card .tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-500);
+  background: rgba(var(--accent-b-rgb), 0.15);
+  border: 1px solid rgba(var(--accent-b-rgb), 0.35);
+  border-radius: 2rem;
+  padding: 0.2rem 0.7rem;
+  margin-bottom: 0.6rem;
+}
+.card p { font-size: clamp(0.8rem, 1.05vw, 0.95rem); margin-bottom: 0.4rem; }
+.card ul.bullets li { font-size: clamp(0.78rem, 1vw, 0.92rem); }
+.card-icon {
+  display: block;
+  width: clamp(1.6rem, 2.4vw, 2.1rem);
+  height: clamp(1.6rem, 2.4vw, 2.1rem);
+  color: var(--cyan-400);
+  filter: drop-shadow(0 0 6px var(--cyan-glow));
+  margin-bottom: 0.6rem;
+  stroke-width: 1.75;
+}
+.card, .compare-card, .process-step, .term {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card:hover, .compare-card:hover, .process-step:hover, .term:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 34px -12px rgba(var(--accent-a-rgb), 0.28);
+  border-color: rgba(var(--accent-a-rgb), 0.45);
+}
+
+/* ---------- Glossary grid ---------- */
+.glossary { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(0.7rem, 1.6vw, 1.2rem); margin-bottom: clamp(1rem, 2.4vh, 1.5rem); }
+@media (max-width: 900px) { .glossary { grid-template-columns: 1fr; } }
+.term {
+  border-left: 3px solid var(--cyan-400);
+  border-radius: 0 0.6rem 0.6rem 0;
+  padding: 0.5rem 0.9rem 0.6rem;
+  background: rgba(var(--accent-a-rgb), 0.03);
+}
+.term-head { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.3rem; }
+.term-icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: 0 0 auto;
+  color: var(--cyan-400);
+  filter: drop-shadow(0 0 5px var(--cyan-glow));
+  stroke-width: 1.9;
+}
+.term .word {
+  font-family: var(--font-display);
+  color: var(--ink-100);
+  font-size: clamp(0.92rem, 1.25vw, 1.08rem);
+  display: block;
+}
+.term p { margin: 0; font-size: clamp(0.78rem, 1vw, 0.92rem); }
+
+/* ---------- Icon color helpers (inherit theme via currentColor) ---------- */
+.icon-cyan { color: var(--cyan-400); }
+.icon-cyan-soft { color: var(--cyan-300); }
+.icon-blue { color: var(--blue-500); }
+.icon-warn { color: #ffcf8a; }
+
+/* ---------- Template: comparison (split cards) ---------- */
+.split-compare {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+}
+.split-compare.split-compare--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) {
+  .split-compare, .split-compare.split-compare--3 { grid-template-columns: 1fr; }
+}
+.compare-card {
+  background: var(--glass);
+  border-radius: var(--radius);
+  padding: clamp(1.1rem, 2.2vw, 1.7rem);
+  position: relative;
+  overflow: hidden;
+}
+.compare-card--a { border: 1px solid rgba(var(--accent-a-rgb), 0.4); box-shadow: inset 0 0 0 1px rgba(var(--accent-a-rgb), 0.06); }
+.compare-card--b { border: 1px solid rgba(var(--accent-b-rgb), 0.45); box-shadow: inset 0 0 0 1px rgba(var(--accent-b-rgb), 0.08); }
+.compare-card--a::before, .compare-card--b::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.compare-card--a::before { background: linear-gradient(90deg, var(--cyan-400), transparent); }
+.compare-card--b::before { background: linear-gradient(90deg, var(--blue-500), transparent); }
+.compare-icon {
+  display: block;
+  width: clamp(1.8rem, 2.8vw, 2.4rem);
+  height: clamp(1.8rem, 2.8vw, 2.4rem);
+  margin-bottom: 0.7rem;
+  stroke-width: 1.7;
+}
+.compare-card--a .compare-icon { color: var(--cyan-400); filter: drop-shadow(0 0 8px var(--cyan-glow)); }
+.compare-card--b .compare-icon { color: var(--blue-500); filter: drop-shadow(0 0 8px rgba(var(--accent-b-rgb), 0.45)); }
+.compare-card h4 {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--ink-100);
+  margin-bottom: 0.5rem;
+}
+.compare-card .tag { margin-bottom: 0.6rem; }
+.compare-card--a .tag { color: var(--cyan-300); background: rgba(var(--accent-a-rgb), 0.12); border-color: rgba(var(--accent-a-rgb), 0.35); }
+.compare-card--b .tag { color: var(--accent-b-text); background: rgba(var(--accent-b-rgb), 0.15); border-color: rgba(var(--accent-b-rgb), 0.4); }
+.compare-card p { font-size: clamp(0.82rem, 1.05vw, 0.98rem); }
+.compare-card ul.bullets li { font-size: clamp(0.8rem, 1vw, 0.93rem); }
+
+/* ---------- Template: process / sequence ---------- */
+.process-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.9rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+}
+.process-row.process-row--4 { grid-template-columns: repeat(4, 1fr); }
+.process-row.process-row--5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 980px) {
+  .process-row, .process-row.process-row--4, .process-row.process-row--5 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .process-row, .process-row.process-row--4, .process-row.process-row--5 { grid-template-columns: 1fr; }
+}
+.process-step {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 2vw, 1.4rem) clamp(0.9rem, 1.8vw, 1.2rem);
+  position: relative;
+  overflow: hidden;
+}
+.process-step::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(160deg, rgba(var(--accent-a-rgb), 0.07), transparent 60%);
+  pointer-events: none;
+}
+.process-step .step-num {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.7rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  background: linear-gradient(160deg, rgba(var(--accent-bright-rgb), 0.35), rgba(var(--accent-b-rgb), 0.18));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  pointer-events: none;
+}
+.process-step .step-icon {
+  display: block;
+  width: clamp(1.6rem, 2.4vw, 2rem);
+  height: clamp(1.6rem, 2.4vw, 2rem);
+  color: var(--cyan-400);
+  filter: drop-shadow(0 0 6px var(--cyan-glow));
+  margin-bottom: 0.7rem;
+  stroke-width: 1.8;
+  position: relative;
+}
+.process-step h4 {
+  font-size: clamp(0.92rem, 1.3vw, 1.1rem);
+  color: var(--ink-100);
+  margin-bottom: 0.35rem;
+  position: relative;
+}
+.process-step p {
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
+  margin: 0;
+  position: relative;
+}
+
+/* ---------- Template: quote / principle ---------- */
+.slide-quote .slide-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.quote-icon {
+  width: clamp(2.2rem, 4vw, 3rem);
+  height: clamp(2.2rem, 4vw, 3rem);
+  color: var(--cyan-400);
+  filter: drop-shadow(0 0 12px var(--cyan-glow));
+  margin-bottom: clamp(1rem, 2.5vh, 1.6rem);
+  stroke-width: 1.5;
+}
+.quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1.35;
+  max-width: 52rem;
+  color: var(--ink-100);
+  margin-bottom: clamp(1rem, 2.5vh, 1.6rem);
+}
+.quote-text .accent {
+  background: linear-gradient(90deg, var(--cyan-300), var(--blue-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.quote-cite {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+/* ---------- Template: hook / provocation (bolder than a standard quote) ---------- */
+.hook-slide .quote-icon {
+  width: clamp(2.6rem, 5vw, 3.6rem);
+  height: clamp(2.6rem, 5vw, 3.6rem);
+}
+.hook-slide .quote-text {
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  max-width: 50rem;
+  margin-bottom: 0;
+}
+
+/* ---------- Template: chat bubble (prompt examples) ---------- */
+.chat-demo {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.7rem, 1.8vh, 1.1rem);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+  max-width: 54rem;
+}
+.chat-bubble {
+  border-radius: 1.2rem;
+  padding: clamp(0.9rem, 1.8vw, 1.3rem) clamp(1rem, 2vw, 1.5rem);
+  max-width: 94%;
+}
+.chat-bubble--user {
+  align-self: flex-start;
+  background: linear-gradient(135deg, rgba(var(--accent-a-rgb), 0.1), rgba(var(--accent-b-rgb), 0.05));
+  border: 1px solid rgba(var(--accent-a-rgb), 0.3);
+  border-bottom-left-radius: 0.3rem;
+}
+.chat-bubble--ai {
+  align-self: flex-end;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-bottom-right-radius: 0.3rem;
+  max-width: 72%;
+}
+.chat-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 0.92vw, 0.82rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cyan-300);
+}
+.chat-bubble--ai .chat-meta { color: var(--ink-500); }
+.chat-avatar-icon { width: 1.05em; height: 1.05em; flex: 0 0 auto; }
+.chat-bubble p {
+  margin: 0 0 0.5rem;
+  font-size: clamp(0.8rem, 1.03vw, 0.94rem);
+  color: var(--ink-300);
+  line-height: 1.5;
+}
+.chat-bubble p:last-child { margin-bottom: 0; }
+.chat-bubble--ai p { color: var(--ink-100); }
+.prompt-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cyan-300);
+  background: rgba(var(--accent-a-rgb), 0.15);
+  border: 1px solid rgba(var(--accent-a-rgb), 0.35);
+  border-radius: 0.4rem;
+  padding: 0.08rem 0.45rem;
+  margin-right: 0.45rem;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+
+/* ---------- Comparison table ---------- */
+table.compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(0.8rem, 1.05vw, 0.98rem);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+}
+table.compare th, table.compare td {
+  border: 1px solid var(--line);
+  padding: clamp(0.5rem, 1.2vh, 0.85rem) clamp(0.7rem, 1.4vw, 1rem);
+  text-align: left;
+  color: var(--ink-300);
+}
+table.compare th {
+  font-family: var(--font-display);
+  color: var(--cyan-300);
+  background: rgba(var(--accent-a-rgb), 0.06);
+  font-weight: 600;
+}
+table.compare td:first-child { color: var(--ink-100); font-weight: 500; }
+table.compare tr:nth-child(even) td { background: rgba(120, 170, 255, 0.04); }
+table.compare tbody tr { transition: background 0.2s ease; }
+table.compare tbody tr:hover td { background: rgba(var(--accent-a-rgb), 0.1); }
+
+.table-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--cyan-300);
+  background: rgba(var(--accent-a-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-a-rgb), 0.3);
+  border-radius: 1rem;
+  padding: 0.15rem 0.6rem 0.15rem 0.4rem;
+}
+.table-cat-pill i { width: 0.85em; height: 0.85em; }
+
+/* ---------- Stat / number highlight ---------- */
+.stat-row { display: flex; gap: clamp(1rem, 3vw, 2.5rem); flex-wrap: wrap; margin-bottom: clamp(1rem, 2.4vh, 1.5rem); }
+.stat {
+  flex: 1;
+  min-width: 9rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.4rem, 1.1vh, 0.65rem);
+}
+.stat .num {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  background: linear-gradient(90deg, var(--cyan-300), var(--blue-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.15;
+  display: block;
+}
+.stat .label { font-size: clamp(0.75rem, 1vw, 0.88rem); color: var(--ink-500); margin: 0; display: block; }
+.stat-icon {
+  width: clamp(1.9rem, 3.4vw, 2.6rem);
+  height: clamp(1.9rem, 3.4vw, 2.6rem);
+  color: var(--cyan-300);
+  filter: drop-shadow(0 0 10px var(--cyan-glow));
+  stroke-width: 1.7;
+  display: block;
+}
+
+/* ---------- Callout / regra de ouro ---------- */
+.callout, .callout-warn {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.7rem, 1.6vw, 1rem);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 2.2vw, 1.6rem);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+}
+.callout-body { min-width: 0; }
+.callout-body p:last-child, .callout-warn .callout-body p:last-child { margin-bottom: 0; }
+.callout-body p + p { margin-top: 0.5rem; }
+.callout-icon {
+  flex: 0 0 auto;
+  width: clamp(1.5rem, 2.4vw, 2rem);
+  height: clamp(1.5rem, 2.4vw, 2rem);
+  margin-top: 0.1em;
+  stroke-width: 1.8;
+}
+.callout {
+  border: 1px solid var(--cyan-glow);
+  background: linear-gradient(135deg, rgba(var(--accent-a-rgb), 0.08), rgba(var(--accent-b-rgb), 0.08));
+}
+.callout .lede { color: var(--cyan-300); margin: 0; }
+.callout .callout-icon { color: var(--cyan-400); filter: drop-shadow(0 0 8px var(--cyan-glow)); }
+
+.callout-warn {
+  border: 1px solid rgba(255, 170, 60, 0.4);
+  background: linear-gradient(135deg, rgba(255, 170, 60, 0.08), rgba(255, 90, 90, 0.06));
+}
+.callout-warn .lede { color: #ffcf8a; margin: 0; }
+.callout-warn .callout-icon { color: #ffcf8a; filter: drop-shadow(0 0 8px rgba(255, 170, 60, 0.4)); }
+
+/* ---------- Lede with leading icon (dense intro paragraphs) ---------- */
+.lede-row {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.7rem, 1.6vw, 1rem);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+}
+.lede-row .lede { margin: 0; }
+.lede-icon {
+  flex: 0 0 auto;
+  width: clamp(1.5rem, 2.4vw, 2rem);
+  height: clamp(1.5rem, 2.4vw, 2rem);
+  margin-top: 0.15em;
+  color: var(--cyan-400);
+  filter: drop-shadow(0 0 8px var(--cyan-glow));
+  stroke-width: 1.8;
+}
+
+/* ---------- Footer meta on content slides ---------- */
+.slide-meta {
+  position: absolute;
+  bottom: clamp(1rem, 3vh, 1.8rem);
+  left: clamp(1.5rem, 7vw, 6rem);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+}
+
+/* ============================================================
+   Slide 1 — Capa
+   ============================================================ */
+.slide-cover { justify-content: center; align-items: center; text-align: center; }
+.slide-cover .slide-inner { display: flex; flex-direction: column; align-items: center; }
+.cover-badge {
+  font-family: var(--font-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  color: var(--cyan-300);
+  margin-bottom: clamp(1.2rem, 3vh, 2rem);
+  border: 1px solid var(--cyan-glow);
+  padding: 0.5rem 1.3rem;
+  border-radius: 2rem;
+  background: rgba(34, 229, 255, 0.06);
+}
+.cover-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6.2vw, 4.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: clamp(1rem, 2.5vh, 1.6rem);
+}
+.cover-title .accent {
+  background: linear-gradient(90deg, var(--cyan-300), var(--blue-500) 60%, var(--cyan-400));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.cover-sub {
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  color: var(--ink-300);
+  max-width: 40rem;
+  margin-bottom: clamp(1.8rem, 4vh, 3rem);
+}
+
+/* ============================================================
+   Topic divider — one small transition slide per topic, a level
+   below the module divider (.slide-cover): smaller title, no
+   subtitle, more discreet (non deco-lg) circuit decoration.
+   ============================================================ */
+.topic-divider .cover-badge { margin-bottom: clamp(1rem, 2.6vh, 1.7rem); }
+.topic-divider .cover-title {
+  font-size: clamp(1.8rem, 4.4vw, 3.2rem);
+  margin-bottom: 0;
+}
+.cover-date {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--ink-100);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.cover-date::before, .cover-date::after {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan-400));
+}
+.cover-date::after { background: linear-gradient(90deg, var(--cyan-400), transparent); }
+
+.cover-institution {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vh, 3rem);
+  left: clamp(1.5rem, 7vw, 6rem);
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+  color: var(--ink-500);
+  letter-spacing: 0.04em;
+}
+.cover-institution strong { display: block; color: var(--ink-100); font-size: clamp(0.9rem, 1.3vw, 1.1rem); }
+
+/* ============================================================
+   Closing slide — thank-you / facilitator contacts recap
+   ============================================================ */
+.closing-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1rem, 2.4vw, 1.6rem);
+  margin-top: clamp(0.6rem, 2vh, 1.2rem);
+}
+.closing-contact-card {
+  border: 1px solid var(--line);
+  background: var(--glass);
+  border-radius: 0.9rem;
+  padding: 0.85rem 1.4rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+.closing-contact-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  color: var(--ink-100);
+}
+.closing-contact-detail {
+  font-size: clamp(0.7rem, 0.95vw, 0.82rem);
+  color: var(--ink-500);
+  letter-spacing: 0.01em;
+}
+
+/* ============================================================
+   Slide 2 — Facilitadores
+   ============================================================ */
+.facilitators-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+}
+@media (max-width: 860px) {
+  .facilitators-grid { grid-template-columns: 1fr; }
+}
+.facilitator-card {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+  padding: clamp(1.3rem, 2.6vw, 2.1rem);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar {
+  width: clamp(5.2rem, 9vw, 7.5rem);
+  height: clamp(5.2rem, 9vw, 7.5rem);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--cyan-400);
+  box-shadow: 0 0 22px var(--cyan-glow);
+  margin-bottom: clamp(0.8rem, 1.8vh, 1.2rem);
+}
+.avatar-fallback {
+  width: clamp(5.2rem, 9vw, 7.5rem);
+  height: clamp(5.2rem, 9vw, 7.5rem);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-500), var(--cyan-400));
+  border: 2px solid var(--cyan-400);
+  box-shadow: 0 0 22px var(--cyan-glow);
+  margin-bottom: clamp(0.8rem, 1.8vh, 1.2rem);
+}
+.facilitator-card h3 {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--ink-100);
+  margin-bottom: 0.2rem;
+}
+.partner-logo {
+  width: clamp(6rem, 12vw, 8.5rem);
+  height: auto;
+  display: block;
+  background: #fff;
+  border-radius: 0.6rem;
+  padding: 0.45rem 0.7rem;
+  margin: 0.9rem 0 0.2rem;
+}
+.facilitator-role {
+  font-size: clamp(0.78rem, 1.05vw, 0.92rem);
+  color: var(--cyan-300);
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.9rem;
+}
+.facilitator-card ul.bullets { text-align: left; margin-bottom: 1rem; }
+.facilitator-contacts {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+  width: 100%;
+  display: grid;
+  gap: 0.35rem;
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  color: var(--ink-300);
+}
+
+/* ============================================================
+   Navigation controls
+   ============================================================ */
+.nav-controls {
+  position: fixed;
+  z-index: 10;
+  bottom: clamp(1rem, 2.6vh, 1.6rem);
+  right: clamp(1.2rem, 4vw, 3rem);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.nav-btn {
+  width: clamp(2.2rem, 3.2vw, 2.7rem);
+  height: clamp(2.2rem, 3.2vw, 2.7rem);
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--glass-solid);
+  color: var(--ink-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.nav-btn:hover { border-color: var(--cyan-400); box-shadow: 0 0 14px var(--cyan-glow); transform: translateY(-1px); }
+.nav-btn:active { transform: translateY(0); }
+.nav-btn svg { width: 1.05rem; height: 1.05rem; }
+
+.slide-counter {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: var(--ink-500);
+  background: var(--glass-solid);
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  padding: 0.4rem 0.9rem;
+  min-width: 3.6rem;
+  text-align: center;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  z-index: 10;
+  background: linear-gradient(90deg, var(--blue-500), var(--cyan-400));
+  box-shadow: 0 0 10px var(--cyan-glow);
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+.topic-rail {
+  position: fixed;
+  z-index: 10;
+  top: clamp(1rem, 2.4vh, 1.6rem);
+  left: clamp(1.5rem, 7vw, 6rem);
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 0.95vw, 0.85rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+}
+.topic-rail strong { color: var(--cyan-300); }
+
+/* ============================================================
+   Entrance animation — staggered reveal per slide
+   ============================================================ */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Top-level blocks inside a slide (kicker, title, lede, sections...) cascade in first. */
+.slide .slide-inner > * { opacity: 0; }
+.slide.active .slide-inner > * {
+  animation: fadeSlideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+.slide.active .slide-inner > *:nth-child(1) { animation-delay: 0.04s; }
+.slide.active .slide-inner > *:nth-child(2) { animation-delay: 0.13s; }
+.slide.active .slide-inner > *:nth-child(3) { animation-delay: 0.22s; }
+.slide.active .slide-inner > *:nth-child(4) { animation-delay: 0.31s; }
+.slide.active .slide-inner > *:nth-child(5) { animation-delay: 0.40s; }
+.slide.active .slide-inner > *:nth-child(6) { animation-delay: 0.49s; }
+.slide.active .slide-inner > *:nth-child(7) { animation-delay: 0.58s; }
+.slide.active .slide-inner > *:nth-child(8) { animation-delay: 0.67s; }
+.slide.active .slide-inner > *:nth-child(n+9) { animation-delay: 0.74s; }
+
+/* Items inside a group (bullets, cards, glossary terms, process steps...) cascade
+   within themselves, slightly quicker, so the group reads as one coordinated beat. */
+.slide ul.bullets li,
+.slide .cols-2 > *,
+.slide .cols-3 > *,
+.slide .process-row > *,
+.slide .glossary > *,
+.slide .split-compare > *,
+.slide .stat-row > *,
+.slide .chat-demo > *,
+.slide .tool-grid > *,
+.slide .decision-list > *,
+.slide .recap-grid > * {
+  opacity: 0;
+}
+.slide.active ul.bullets li,
+.slide.active .cols-2 > *,
+.slide.active .cols-3 > *,
+.slide.active .process-row > *,
+.slide.active .glossary > *,
+.slide.active .split-compare > *,
+.slide.active .stat-row > *,
+.slide.active .chat-demo > *,
+.slide.active .tool-grid > *,
+.slide.active .decision-list > *,
+.slide.active .recap-grid > * {
+  animation: fadeSlideUp 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+.slide.active ul.bullets li:nth-child(1),
+.slide.active .cols-2 > *:nth-child(1),
+.slide.active .cols-3 > *:nth-child(1),
+.slide.active .process-row > *:nth-child(1),
+.slide.active .glossary > *:nth-child(1),
+.slide.active .split-compare > *:nth-child(1),
+.slide.active .stat-row > *:nth-child(1),
+.slide.active .chat-demo > *:nth-child(1),
+.slide.active .tool-grid > *:nth-child(1),
+.slide.active .decision-list > *:nth-child(1),
+.slide.active .recap-grid > *:nth-child(1) { animation-delay: 0.22s; }
+.slide.active ul.bullets li:nth-child(2),
+.slide.active .cols-2 > *:nth-child(2),
+.slide.active .cols-3 > *:nth-child(2),
+.slide.active .process-row > *:nth-child(2),
+.slide.active .glossary > *:nth-child(2),
+.slide.active .split-compare > *:nth-child(2),
+.slide.active .stat-row > *:nth-child(2),
+.slide.active .chat-demo > *:nth-child(2),
+.slide.active .tool-grid > *:nth-child(2),
+.slide.active .decision-list > *:nth-child(2),
+.slide.active .recap-grid > *:nth-child(2) { animation-delay: 0.36s; }
+.slide.active ul.bullets li:nth-child(3),
+.slide.active .cols-2 > *:nth-child(3),
+.slide.active .cols-3 > *:nth-child(3),
+.slide.active .process-row > *:nth-child(3),
+.slide.active .glossary > *:nth-child(3),
+.slide.active .split-compare > *:nth-child(3),
+.slide.active .stat-row > *:nth-child(3),
+.slide.active .decision-list > *:nth-child(3),
+.slide.active .recap-grid > *:nth-child(3) { animation-delay: 0.40s; }
+.slide.active ul.bullets li:nth-child(4),
+.slide.active .cols-2 > *:nth-child(4),
+.slide.active .cols-3 > *:nth-child(4),
+.slide.active .process-row > *:nth-child(4),
+.slide.active .glossary > *:nth-child(4),
+.slide.active .split-compare > *:nth-child(4),
+.slide.active .stat-row > *:nth-child(4),
+.slide.active .decision-list > *:nth-child(4) { animation-delay: 0.49s; }
+.slide.active ul.bullets li:nth-child(5),
+.slide.active .glossary > *:nth-child(5) { animation-delay: 0.58s; }
+.slide.active ul.bullets li:nth-child(n+6),
+.slide.active .glossary > *:nth-child(n+6) { animation-delay: 0.66s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide .slide-inner > *, .slide ul.bullets li, .slide .cols-2 > *, .slide .cols-3 > *,
+  .slide .process-row > *, .slide .glossary > *, .slide .split-compare > *, .slide .stat-row > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   Decorative circuit illustrations — reserved for topic-opener
+   slides and the module closing slide. Original inline SVGs,
+   colored via currentColor-free var() refs so they auto-tint
+   with whichever palette the slide carries.
+   ============================================================ */
+.deco-circuit {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: clamp(15rem, 27vw, 23rem);
+  height: clamp(15rem, 27vw, 23rem);
+  opacity: 0.55;
+}
+.deco-circuit svg { width: 100%; height: 100%; display: block; }
+.deco-circuit.deco-tr { top: clamp(-1.4rem, -1vw, -0.4rem); right: clamp(-1.4rem, -1vw, -0.4rem); }
+.deco-circuit.deco-br { bottom: clamp(-1.4rem, -1vw, -0.4rem); right: clamp(-1.4rem, -1vw, -0.4rem); }
+.deco-circuit.deco-bl { bottom: clamp(-1.4rem, -1vw, -0.4rem); left: clamp(-1.4rem, -1vw, -0.4rem); }
+.deco-circuit.deco-tl { top: clamp(-1.4rem, -1vw, -0.4rem); left: clamp(-1.4rem, -1vw, -0.4rem); }
+.deco-circuit.deco-tl, .deco-circuit.deco-bl.deco-mirror { transform: scaleX(-1); }
+.deco-circuit.deco-lg {
+  width: clamp(19rem, 36vw, 32rem);
+  height: clamp(19rem, 36vw, 32rem);
+  opacity: 0.65;
+}
+.deco-circuit.deco-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(24rem, 46vw, 40rem);
+  height: clamp(24rem, 46vw, 40rem);
+  opacity: 0.22;
+}
+
+/* ============================================================
+   Template: tool card (Módulo 3 — portfólio de ferramentas)
+   ============================================================ */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+}
+.tool-grid.tool-grid--1 { grid-template-columns: 1fr; max-width: 40rem; }
+@media (max-width: 900px) { .tool-grid { grid-template-columns: 1fr; } }
+
+.tool-card {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.1rem, 2.2vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.6rem, 1.4vh, 0.9rem);
+}
+.tool-card-header { display: flex; align-items: center; gap: 0.85rem; }
+.tool-logo {
+  width: clamp(2.6rem, 4vw, 3.4rem);
+  height: clamp(2.6rem, 4vw, 3.4rem);
+  border-radius: 0.65rem;
+  object-fit: contain;
+  background: #fff;
+  padding: 0.3rem;
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.tool-badge {
+  width: clamp(2.6rem, 4vw, 3.4rem);
+  height: clamp(2.6rem, 4vw, 3.4rem);
+  border-radius: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--blue-500), var(--cyan-400));
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+  text-align: center;
+  line-height: 1.05;
+  flex: 0 0 auto;
+}
+.tool-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--ink-100);
+  font-weight: 600;
+}
+.tool-tagline { font-size: clamp(0.72rem, 0.95vw, 0.82rem); color: var(--cyan-300); margin-top: 0.1rem; }
+.tool-card p.tool-desc { margin: 0; font-size: clamp(0.8rem, 1.03vw, 0.94rem); color: var(--ink-300); line-height: 1.5; }
+.tool-app-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: rgba(var(--accent-a-rgb), 0.08);
+  border-left: 3px solid var(--cyan-400);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.8rem;
+}
+.tool-app-row i { color: var(--cyan-400); flex: 0 0 auto; margin-top: 0.15em; width: 1.05em; height: 1.05em; }
+.tool-app-row p { margin: 0; font-size: clamp(0.76rem, 0.98vw, 0.88rem); color: var(--ink-100); line-height: 1.45; }
+.tool-link {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  color: var(--cyan-300);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.tool-link:hover { color: var(--cyan-400); text-decoration: underline; }
+.tool-link i { width: 0.9em; height: 0.9em; }
+
+/* ---------- Template: decision checklist ("quando usar cada uma") ---------- */
+.decision-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: clamp(1rem, 2.4vh, 1.5rem); }
+.decision-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  padding: 0.7rem 1.1rem;
+}
+.decision-item i.decision-icon { color: var(--cyan-400); flex: 0 0 auto; width: 1.15em; height: 1.15em; }
+.decision-q { flex: 1 1 auto; font-size: clamp(0.8rem, 1.05vw, 0.95rem); color: var(--ink-300); }
+.decision-arrow { color: var(--ink-700); flex: 0 0 auto; width: 1em; height: 1em; }
+.decision-tool { font-family: var(--font-display); font-weight: 600; font-size: clamp(0.82rem, 1.05vw, 0.96rem); color: var(--cyan-300); white-space: nowrap; flex: 0 0 auto; }
+
+/* ---------- Template: recap grid (Módulo 3 — quadro-resumo) ---------- */
+.recap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.9rem, 2vw, 1.5rem); margin-bottom: clamp(1rem, 2.4vh, 1.5rem); }
+.recap-grid.recap-grid--2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) { .recap-grid, .recap-grid.recap-grid--2 { grid-template-columns: 1fr; } }
+.recap-category {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(0.9rem, 1.8vw, 1.3rem);
+}
+.recap-category-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1.15vw, 1rem);
+  color: var(--cyan-300);
+  margin-bottom: 0.6rem;
+}
+.recap-category-title i { width: 1.1em; height: 1.1em; }
+.recap-row { display: flex; align-items: center; gap: 0.55rem; padding: 0.45rem 0; border-bottom: 1px solid var(--line); }
+.recap-row:last-child { border-bottom: none; padding-bottom: 0; }
+.recap-row:first-of-type { padding-top: 0; }
+.recap-logo {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 0.35rem;
+  object-fit: contain;
+  background: #fff;
+  padding: 0.15rem;
+  flex: 0 0 auto;
+}
+.recap-badge {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--blue-500), var(--cyan-400));
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  flex: 0 0 auto;
+  text-align: center;
+  line-height: 1;
+}
+.recap-text { font-size: clamp(0.74rem, 0.95vw, 0.85rem); color: var(--ink-300); line-height: 1.35; }
+.recap-text strong { color: var(--ink-100); display: block; font-size: clamp(0.78rem, 1vw, 0.9rem); }
+
+/* ============================================================
+   Print / PDF
+   ============================================================ */
+@page {
+  size: landscape;
+  margin: 0;
+}
+@media print {
+  html, body { overflow: visible; height: auto; background: var(--bg-deep); }
+  .bg-fx { position: absolute; }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  .nav-controls, .progress-bar, .topic-rail { display: none !important; }
+  .deck { height: auto; }
+  .slide {
+    position: relative;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    height: 100vh;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .slide:last-child { page-break-after: auto; }
+  /* Force every staggered/animated element to its final, fully-visible state. */
+  .slide, .slide * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* background-clip:text renders as an opaque box on wrapped line fragments
+     in Chromium's print-to-pdf rasterizer — fall back to a solid accent color. */
+  .slide-title .accent, .quote-text .accent, .cover-title .accent {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    color: var(--cyan-300) !important;
+  }
+  /* Chromium's print viewport trips the .facilitators-grid 860px stacking
+     breakpoint even though the printed page is landscape and has plenty of
+     width — force the two-column layout back (same one that already fits
+     cleanly on screen) so both cards keep fitting on one printed page. */
+  .facilitators-grid { grid-template-columns: 1fr 1fr !important; }
+}
