@@ -925,6 +925,19 @@ table.compare tbody tr:hover td { background: rgba(var(--accent-a-rgb), 0.1); }
   font-size: clamp(0.78rem, 1vw, 0.9rem);
   color: var(--ink-300);
 }
+.facilitator-contacts .contact-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.contact-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: 0 0 auto;
+  color: var(--cyan-400);
+  filter: drop-shadow(0 0 5px var(--cyan-glow));
+}
 
 /* ============================================================
    Navigation controls
