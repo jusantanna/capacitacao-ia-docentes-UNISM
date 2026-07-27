@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Caso Hipotético</title>
+<style>
+  :root {
+    --cor-fundo: #f4f5f7;
+    --cor-superficie: #ffffff;
+    --cor-borda: #d9dce1;
+    --cor-texto: #1f2733;
+    --cor-texto-suave: #5b6472;
+    --cor-primaria: #1f3a5f;
+    --cor-primaria-hover: #16283f;
+    --cor-acento: #2f6f4e;
+    --cor-acento-hover: #24583e;
+    --sombra: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.06);
+    --raio: 8px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    margin: 0 0 8px;
+  }
+
+  header p {
+    color: var(--cor-texto-suave);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+
+  .card h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  .campo {
+    margin-bottom: 18px;
+  }
+
+  .campo:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    color: var(--cor-texto);
+  }
+
+  .dica {
+    font-size: 0.8rem;
+    color: var(--cor-texto-suave);
+    margin: 4px 0 0;
+  }
+
+  select,
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  select:focus,
+  input[type="text"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(31, 58, 95, 0.12);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+
+  .area-outra {
+    margin-top: 10px;
+    display: none;
+  }
+
+  .area-outra.visivel {
+    display: block;
+  }
+
+  .botoes {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.05s ease;
+  }
+
+  button:active {
+    transform: translateY(1px);
+  }
+
+  #btn-gerar {
+    background: var(--cor-primaria);
+    color: #fff;
+  }
+
+  #btn-gerar:hover {
+    background: var(--cor-primaria-hover);
+  }
+
+  #btn-copiar {
+    background: var(--cor-acento);
+    color: #fff;
+  }
+
+  #btn-copiar:hover {
+    background: var(--cor-acento-hover);
+  }
+
+  #btn-copiar:disabled {
+    background: #a7b0bd;
+    cursor: not-allowed;
+  }
+
+  .resultado {
+    display: none;
+  }
+
+  .resultado.visivel {
+    display: block;
+  }
+
+  #saida-prompt {
+    width: 100%;
+    min-height: 320px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    background: #fafbfc;
+  }
+
+  .rodape-resultado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .status-copia {
+    font-size: 0.85rem;
+    color: var(--cor-acento);
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .status-copia.visivel {
+    opacity: 1;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--cor-texto-suave);
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Gerador de Caso Hipotético</h1>
+      <p>Monte, em segundos, um prompt estruturado para pedir a uma IA um caso hipotético inédito com gabarito comentado.</p>
+    </header>
+
+    <div class="card">
+      <h2>Dados do caso</h2>
+
+      <div class="campo">
+        <label for="area-direito">Área do Direito</label>
+        <select id="area-direito">
+          <option value="Direito Civil">Direito Civil</option>
+          <option value="Direito Processual Civil">Direito Processual Civil</option>
+          <option value="Direito Constitucional">Direito Constitucional</option>
+          <option value="Direito do Consumidor">Direito do Consumidor</option>
+          <option value="Direito Penal">Direito Penal</option>
+          <option value="outra">Outra (digitar)</option>
+        </select>
+        <div class="area-outra" id="wrapper-area-outra">
+          <input type="text" id="area-outra-input" placeholder="Digite a área do Direito desejada">
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="tema">Tema específico</label>
+        <input type="text" id="tema" placeholder="Ex.: responsabilidade civil objetiva">
+      </div>
+
+      <div class="campo">
+        <label for="contexto-turma">Contexto da turma</label>
+        <textarea id="contexto-turma" placeholder="Ex.: turma do 4º semestre, já viu a teoria do risco e os fundamentos da responsabilidade civil subjetiva"></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="restricao">Restrição (opcional)</label>
+        <input type="text" id="restricao" placeholder="Ex.: no máximo 15 linhas de enunciado">
+        <p class="dica">Deixe em branco se não houver nenhuma restrição específica.</p>
+      </div>
+    </div>
+
+    <div class="botoes">
+      <button id="btn-gerar" type="button">Gerar prompt</button>
+    </div>
+
+    <div class="card resultado" id="bloco-resultado">
+      <h2>Prompt gerado</h2>
+      <textarea id="saida-prompt" readonly></textarea>
+      <div class="rodape-resultado">
+        <button id="btn-copiar" type="button">Copiar prompt</button>
+        <span class="status-copia" id="status-copia">Copiado para a área de transferência!</span>
+      </div>
+    </div>
+
+    <footer>Gerador de Caso Hipotético &mdash; ferramenta de apoio docente</footer>
+  </div>
+
+<script>
+  const selectArea = document.getElementById('area-direito');
+  const wrapperAreaOutra = document.getElementById('wrapper-area-outra');
+  const inputAreaOutra = document.getElementById('area-outra-input');
+  const inputTema = document.getElementById('tema');
+  const textareaContexto = document.getElementById('contexto-turma');
+  const inputRestricao = document.getElementById('restricao');
+  const btnGerar = document.getElementById('btn-gerar');
+  const btnCopiar = document.getElementById('btn-copiar');
+  const blocoResultado = document.getElementById('bloco-resultado');
+  const saidaPrompt = document.getElementById('saida-prompt');
+  const statusCopia = document.getElementById('status-copia');
+
+  selectArea.addEventListener('change', () => {
+    const mostrarOutra = selectArea.value === 'outra';
+    wrapperAreaOutra.classList.toggle('visivel', mostrarOutra);
+    if (!mostrarOutra) {
+      inputAreaOutra.value = '';
+    }
+  });
+
+  function obterAreaDireito() {
+    if (selectArea.value === 'outra') {
+      return inputAreaOutra.value.trim();
+    }
+    return selectArea.value;
+  }
+
+  function montarPrompt() {
+    const area = obterAreaDireito();
+    const tema = inputTema.value.trim();
+    const contexto = textareaContexto.value.trim();
+    const restricao = inputRestricao.value.trim();
+
+    const linhas = [];
+
+    linhas.push('# Persona');
+    linhas.push(`Você é um professor experiente de ${area || '[área do Direito não informada]'}, especialista em elaborar casos hipotéticos para uso didático em cursos de Direito.`);
+    linhas.push('');
+
+    linhas.push('# Contexto');
+    linhas.push(`Área do Direito: ${area || '[não informada]'}`);
+    linhas.push(`Tema específico: ${tema || '[não informado]'}`);
+    linhas.push(`Contexto da turma: ${contexto || '[não informado]'}`);
+    linhas.push('');
+
+    linhas.push('# Instrução');
+    linhas.push(`Elabore um caso hipotético INÉDITO (não reproduza casos famosos, julgados reais ou exemplos clássicos de manuais) sobre o tema "${tema || '[tema não informado]'}", adequado ao nível e ao momento da turma descritos acima. O caso deve apresentar uma situação fática plausível, com personagens fictícios e dados suficientes para permitir a análise jurídica do tema proposto.`);
+    linhas.push('Em seguida, apresente um gabarito comentado, explicando passo a passo o raciocínio jurídico esperado, os fundamentos legais e doutrinários aplicáveis, e a solução do caso.');
+    linhas.push('');
+
+    linhas.push('# Restrição');
+    linhas.push(restricao ? restricao : 'Nenhuma restrição adicional além das instruções acima.');
+    linhas.push('');
+
+    linhas.push('# Formato de saída');
+    linhas.push('Estruture a resposta em duas seções, claramente identificadas:');
+    linhas.push('1. "Caso Hipotético" — apenas o enunciado do caso, sem a solução.');
+    linhas.push('2. "Gabarito Comentado" — a resolução do caso, organizada em tópicos ou etapas de raciocínio, com citação dos dispositivos legais e/ou doutrina pertinente.');
+
+    return linhas.join('\n');
+  }
+
+  btnGerar.addEventListener('click', () => {
+    const promptGerado = montarPrompt();
+    saidaPrompt.value = promptGerado;
+    blocoResultado.classList.add('visivel');
+    btnCopiar.disabled = false;
+    statusCopia.classList.remove('visivel');
+    blocoResultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  btnCopiar.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(saidaPrompt.value);
+    } catch (erro) {
+      saidaPrompt.select();
+      document.execCommand('copy');
+    }
+    statusCopia.classList.add('visivel');
+    setTimeout(() => statusCopia.classList.remove('visivel'), 2000);
+  });
+</script>
+</body>
+</html>
