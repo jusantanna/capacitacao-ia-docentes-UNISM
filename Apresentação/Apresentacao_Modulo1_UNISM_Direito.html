@@ -1149,92 +1149,11 @@
     </div>
   </section>
 
-<section class="slide palette-violet" data-slide="m2-3.2" data-topic="3/10 · Módulo 2 — Como os modelos processam e geram respostas">
+  <section class="slide slide-quote palette-violet" data-slide="m2-3.3" data-topic="3/10 · Módulo 2 — Como os modelos processam e geram respostas">
     <div class="slide-inner">
       <span class="kicker">Tópico 3 de 10 · Módulo 2</span>
-      <h2 class="slide-title">Modelos de linguagem <span class="accent">não pensam</span></h2>
-      <p class="lede">Eles não têm consciência, não raciocinam e não "entendem" no sentido em que uma pessoa entende. É por isso que a IA pode errar uma data, um número de processo ou um artigo de lei com a mesma confiança de um acerto: não é falha de raciocínio, é estatística.</p>
-      <div class="cols-2">
-        <div class="card">
-          <i data-lucide="hash" class="card-icon"></i>
-          <h4>Tokenização</h4>
-          <p>Computadores processam números, não palavras. Termos jurídicos comuns viram poucos tokens; jargão raro ou citações longas se quebram em vários.</p>
-        </div>
-        <div class="card">
-          <i data-lucide="grid-3x3" class="card-icon"></i>
-          <h4>Embeddings</h4>
-          <p>Cada token vira um vetor. Conceitos relacionados ficam matematicamente próximos — é o que permite reconhecer que "prescrição" e "decadência" são temas vizinhos.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide palette-violet" data-slide="m2-3.3" data-topic="3/10 · Módulo 2 — Como os modelos processam e geram respostas">
-    <div class="slide-inner">
-      <span class="kicker">Tópico 3 de 10 · Módulo 2</span>
-      <h2 class="slide-title">O problema da <span class="accent">alucinação</span></h2>
-      <p class="lede">Plausibilidade não é verdade. Em um "vazio de dados" — uma lei que não existe, um acórdão que não foi proferido — o modelo não responde "não sei": ele gera a continuação estatisticamente mais coerente, com a mesma confiança de uma informação real.</p>
-      <div class="callout-warn">
-        <i data-lucide="alert-triangle" class="callout-icon"></i>
-        <div class="callout-body"><p class="lede">Já vimos no Módulo 1 o custo concreto disso — o caso Mata v. Avianca, em que uma petição citou seis precedentes inventados. Um segundo caso real mostra que o risco não é exclusivo da advocacia.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide palette-violet" data-slide="m2-3.4" data-topic="3/10 · Módulo 2 — Como os modelos processam e geram respostas">
-    <div class="slide-inner">
-      <span class="kicker">Tópico 3 de 10 · Módulo 2</span>
-      <h2 class="slide-title">Caso real: <span class="accent">Air Canada</span></h2>
-      <p class="lede">Fevereiro de 2024 — o chatbot da empresa informou incorretamente a um passageiro sobre uma tarifa de luto retroativa.</p>
-      <div class="process-row">
-        <div class="process-step">
-          <span class="step-num">1</span>
-          <i data-lucide="message-circle" class="step-icon"></i>
-          <h4>O erro do chatbot</h4>
-          <p>Informou que a tarifa de luto podia ser solicitada de forma retroativa.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-num">2</span>
-          <i data-lucide="shield-off" class="step-icon"></i>
-          <h4>A defesa da empresa</h4>
-          <p>Argumentou que não era responsável pelo que o chatbot disse — a mesma lógica de "a IA errou, não eu" já vista em Mata v. Avianca.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-num">3</span>
-          <i data-lucide="gavel" class="step-icon"></i>
-          <h4>A decisão do tribunal</h4>
-          <p>Rejeitou o argumento e condenou a empresa a pagar os danos.</p>
-        </div>
-      </div>
-      <div class="stat-row">
-        <div class="stat"><span class="num">Responsável</span><span class="label">a empresa por toda informação do site — inclusive a do chatbot</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide palette-violet" data-slide="m2-3.5" data-topic="3/10 · Módulo 2 — Como os modelos processam e geram respostas">
-    <div class="slide-inner">
-      <span class="kicker">Tópico 3 de 10 · Módulo 2</span>
-      <h2 class="slide-title">O padrão por trás <span class="accent">dos dois casos</span></h2>
-      <p class="lede">Mata v. Avianca e Air Canada têm a mesma causa raiz: o modelo preencheu um vazio de informação com a continuação mais provável, não com a verdade checada.</p>
-      <div class="process-row">
-        <div class="process-step">
-          <span class="step-num">1</span>
-          <i data-lucide="search" class="step-icon"></i>
-          <h4>O ponto cego comum</h4>
-          <p>Em nenhum dos dois casos alguém consultou uma fonte real antes de confiar na resposta.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-num">2</span>
-          <i data-lucide="repeat" class="step-icon"></i>
-          <h4>A falsa verificação</h4>
-          <p>Perguntar à própria IA se ela está certa não resolve — ela pode alucinar a confirmação com a mesma facilidade com que alucinou o erro.</p>
-        </div>
-      </div>
-      <div class="callout-warn">
-        <i data-lucide="shield-alert" class="callout-icon"></i>
-        <div class="callout-body"><p class="lede">A saída real não é desconfiar de tudo — é dar ao modelo uma fonte concreta para consultar, em vez de deixá-lo responder só da memória do treinamento. É exatamente esse o papel do RAG e, mais adiante, da ancoragem.</p></div>
-      </div>
+      <i data-lucide="alert-triangle" class="quote-icon"></i>
+      <p class="quote-text"><span class="accent">Plausibilidade não é verdade.</span> Em um "vazio de dados" — uma lei que não existe, um acórdão que não foi proferido — o modelo não responde "não sei": ele gera a continuação estatisticamente mais coerente, com a mesma confiança de uma informação real.</p>
     </div>
   </section>
 
