@@ -1,0 +1,13 @@
+- colocar slide 60 depois da demostração dos gems e notbook
+- revisar termos em ingles
+- links das pesquisas
+- justificar a utilização das tecnicas de prompt devido a limitação de uso de tokens (são pagos)
+- diferentes pessoas, utilizando as mesmas ferramentas podem obter resultados completamente diferentes.
+- não é a IA que não funciona, provavelmente é que opera
+- se planejar e dominar o que está fazendo 
+- eu sei fazer a tarefa sozinho, só quero fazer em um tempo mais rápido para isso eu utilizo a IA, não vou utilizar
+para fazer algo que eu não sei
+- validar slide 91 se vou colocar ou não
+- a IA exige curiosidade, tem que mexer 
+- elict - esqueci de colocar
+- deixar só quadro resumo das ferramentas (querem que eu demostre cada uma? conhecem?)
