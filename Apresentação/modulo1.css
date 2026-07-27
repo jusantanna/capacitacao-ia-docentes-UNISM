@@ -841,9 +841,19 @@ table.compare tbody tr:hover td { background: rgba(var(--accent-a-rgb), 0.1); }
   color: var(--ink-100);
 }
 .closing-contact-detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem 1rem;
   font-size: clamp(0.7rem, 0.95vw, 0.82rem);
   color: var(--ink-500);
   letter-spacing: 0.01em;
+}
+.closing-contact-detail .contact-line {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 /* ============================================================
