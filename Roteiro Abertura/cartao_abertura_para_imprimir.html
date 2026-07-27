@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cartão de Abertura</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+  }
+  .card {
+    width: 11cm;
+    height: 18.5cm;
+    box-sizing: border-box;
+    border: 1.5pt solid #333;
+    border-radius: 6pt;
+    padding: 0.9cm 0.8cm;
+    margin: 0 auto;
+    page-break-inside: avoid;
+  }
+  .title {
+    text-align: center;
+    font-size: 11pt;
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 4pt;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 8.5pt;
+    font-style: italic;
+    color: #888;
+    margin-bottom: 14pt;
+  }
+  .fixed {
+    background: #f4f4f4;
+    border-left: 3pt solid #333;
+    padding: 6pt 8pt;
+    font-size: 9.5pt;
+    font-style: italic;
+    margin-bottom: 10pt;
+  }
+  .fixed-label {
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #666;
+    font-style: normal;
+    margin-bottom: 2pt;
+  }
+  .block {
+    margin-bottom: 9pt;
+  }
+  .block-number {
+    display: inline-block;
+    width: 15pt;
+    height: 15pt;
+    background: #333;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 15pt;
+    font-size: 8.5pt;
+    font-weight: bold;
+    margin-right: 5pt;
+  }
+  .block-anchor {
+    font-weight: bold;
+    font-size: 11pt;
+    letter-spacing: 0.5pt;
+  }
+  .block-text {
+    font-size: 9pt;
+    color: #333;
+    margin-left: 20pt;
+    margin-top: 1pt;
+    line-height: 1.3;
+  }
+  .bridge {
+    background: #fff8e6;
+    border-left: 3pt solid #c9a227;
+    padding: 6pt 8pt;
+    font-size: 9pt;
+    font-style: italic;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+  }
+  .footer {
+    text-align: center;
+    font-size: 8pt;
+    color: #888;
+    margin-top: 8pt;
+    border-top: 0.5pt solid #ccc;
+    padding-top: 6pt;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="title">Abertura · Capacitação IA</div>
+  <div class="subtitle">Não leia. Só consulte se travar.</div>
+
+  <div class="fixed">
+    <div class="fixed-label">Frase de abertura</div>
+    "Boa noite, pessoal. Antes de começar, quero ser transparente: isso aqui não vai ser uma aula."
+  </div>
+
+  <div class="block">
+    <span class="block-number">1</span><span class="block-anchor">TRANSPARÊNCIA</span>
+    <div class="block-text">Não sou docente. Vivência corporativa aplicando IA no dia a dia.</div>
+  </div>
+
+  <div class="block">
+    <span class="block-number">2</span><span class="block-anchor">CLAUDETE</span>
+    <div class="block-text">Vocês já conhecem IA. Já conversei com a Claudete. Não é novidade, é o que funciona.</div>
+  </div>
+
+  <div class="block">
+    <span class="block-number">3</span><span class="block-anchor">INSTAGRAM</span>
+    <div class="block-text">Instagram cheio de "especialista em IA".</div>
+  </div>
+
+  <div class="block">
+    <span class="block-number">4</span><span class="block-anchor">"SURGIU ONTEM?"</span>
+    <div class="block-text">Como virar especialista em algo que surgiu ontem? Quem testou x quem reproduz tendência.</div>
+  </div>
+
+  <div class="block">
+    <span class="block-number">5</span><span class="block-anchor">TESTEI, NÃO MODISMO</span>
+    <div class="block-text">O que apliquei e vi gerar resultado, com gente tão diferente quanto vocês.</div>
+  </div>
+
+  <div class="bridge">
+    <div class="fixed-label" style="color:#8a6d00;">Se travar, use:</div>
+    "...então deixa eu te contar por que eu topei isso."
+  </div>
+
+  <div class="fixed">
+    <div class="fixed-label">Frase de fechamento</div>
+    "Essa é a promessa desse encontro."
+  </div>
+
+  <div class="footer">Respire. A ordem importa mais que as palavras exatas.</div>
+</div>
+
+</body>
+</html>
