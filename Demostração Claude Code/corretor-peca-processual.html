@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corretor de Peça Processual</title>
+<style>
+  :root {
+    --cor-fundo: #f4f5f7;
+    --cor-superficie: #ffffff;
+    --cor-borda: #d9dce1;
+    --cor-texto: #1f2733;
+    --cor-texto-suave: #5b6472;
+    --cor-primaria: #1f3a5f;
+    --cor-primaria-hover: #16283f;
+    --cor-acento: #2f6f4e;
+    --cor-acento-hover: #24583e;
+    --cor-alerta: #8a3b2f;
+    --cor-alerta-fundo: #fbeeec;
+    --cor-aviso-fundo: #fff8e6;
+    --cor-aviso-borda: #e8c766;
+    --sombra: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.06);
+    --raio: 8px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    margin: 0 0 8px;
+  }
+
+  header p {
+    color: var(--cor-texto-suave);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 26px 28px;
+    margin-bottom: 20px;
+  }
+
+  .card h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    margin: 0 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  .campo {
+    margin-bottom: 16px;
+  }
+
+  .campo:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    color: var(--cor-texto);
+  }
+
+  .dica {
+    font-size: 0.8rem;
+    color: var(--cor-texto-suave);
+    margin: 4px 0 0;
+  }
+
+  select,
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  select:focus,
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(31, 58, 95, 0.12);
+  }
+
+  textarea#peca-texto {
+    resize: vertical;
+    min-height: 220px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.83rem;
+    line-height: 1.5;
+  }
+
+  .grade-criterios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 8px 20px;
+  }
+
+  .criterio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .criterio-item input {
+    margin-top: 3px;
+    flex-shrink: 0;
+    width: auto;
+  }
+
+  .grupo-opcoes {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .opcao-radio {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+
+  .opcao-radio input {
+    width: auto;
+    margin: 0;
+  }
+
+  .opcao-radio:has(input:checked) {
+    border-color: var(--cor-primaria);
+    background: #eaf0f7;
+    font-weight: 600;
+  }
+
+  .campo-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .campo-inline input[type="number"] {
+    width: 90px;
+  }
+
+  .linha-chave {
+    display: flex;
+    gap: 8px;
+  }
+
+  .linha-chave input {
+    flex: 1;
+  }
+
+  .botao-secundario {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .botao-secundario:hover {
+    background: var(--cor-fundo);
+  }
+
+  .aviso-chave {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--cor-aviso-fundo);
+    border: 1px solid var(--cor-aviso-borda);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    color: #6b4e10;
+    line-height: 1.5;
+  }
+
+  .status-chave {
+    font-size: 0.8rem;
+    color: var(--cor-acento);
+    font-weight: 600;
+    margin-top: 8px;
+    min-height: 1.2em;
+  }
+
+  .botoes-acao {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 24px;
+  }
+
+  #btn-corrigir {
+    background: var(--cor-primaria);
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 14px 36px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  #btn-corrigir:hover:not(:disabled) {
+    background: var(--cor-primaria-hover);
+  }
+
+  #btn-corrigir:disabled {
+    background: #a7b0bd;
+    cursor: not-allowed;
+  }
+
+  .erro-validacao {
+    color: var(--cor-alerta);
+    font-size: 0.85rem;
+    text-align: center;
+    margin: -10px 0 16px;
+    min-height: 1.2em;
+  }
+
+  #bloco-resultado {
+    display: none;
+  }
+
+  #bloco-resultado.visivel {
+    display: block;
+  }
+
+  .carregando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 30px 10px;
+    color: var(--cor-texto-suave);
+    font-size: 0.92rem;
+  }
+
+  .spinner {
+    width: 34px;
+    height: 34px;
+    border: 4px solid var(--cor-borda);
+    border-top-color: var(--cor-primaria);
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
+  }
+
+  @keyframes girar {
+    to { transform: rotate(360deg); }
+  }
+
+  .criterio-resultado {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  .criterio-resultado:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .criterio-resultado h3 {
+    font-size: 0.95rem;
+    color: var(--cor-primaria);
+    margin: 0 0 6px;
+  }
+
+  .criterio-resultado p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--cor-texto);
+  }
+
+  .bloco-nota {
+    margin-top: 20px;
+    padding: 18px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .bloco-nota.aprovado {
+    background: #eaf5ee;
+    border: 1px solid #bfe0cb;
+  }
+
+  .bloco-nota.reprovado {
+    background: var(--cor-alerta-fundo);
+    border: 1px solid #e6c6c0;
+  }
+
+  .nota-valor {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cor-primaria);
+    line-height: 1;
+  }
+
+  .nota-texto {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .nota-selo {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .bloco-nota.aprovado .nota-selo { color: var(--cor-acento); }
+  .bloco-nota.reprovado .nota-selo { color: var(--cor-alerta); }
+
+  .nota-justificativa {
+    margin: 6px 0 0;
+    font-size: 0.88rem;
+    color: var(--cor-texto);
+  }
+
+  .erro-resultado {
+    background: var(--cor-alerta-fundo);
+    border: 1px solid #e6c6c0;
+    color: var(--cor-alerta);
+    border-radius: 6px;
+    padding: 16px 18px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .erro-resultado strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--cor-texto-suave);
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Corretor de Peça Processual</h1>
+      <p>Cole uma peça (ou use um exemplo), ajuste os critérios de correção e receba um comentário avaliativo gerado diretamente pela API da Anthropic.</p>
+    </header>
+
+    <div class="card">
+      <h2>Peça a corrigir</h2>
+      <div class="campo">
+        <label for="select-exemplo">Peça de exemplo</label>
+        <select id="select-exemplo">
+          <option value="custom">Colar minha própria peça abaixo</option>
+          <option value="exemplo1">Exemplo 1 — Ação de Indenização</option>
+          <option value="exemplo2">Exemplo 2 — Recurso de Apelação (Guarda Compartilhada)</option>
+        </select>
+        <p class="dica">Peças de exemplo são fictícias, feitas só para fins didáticos, e contêm pontos a melhorar de propósito.</p>
+      </div>
+      <div class="campo">
+        <label for="peca-texto">Texto da peça</label>
+        <textarea id="peca-texto" placeholder="Cole aqui o texto da peça processual a ser corrigida..."></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Parâmetros de correção</h2>
+
+      <div class="campo">
+        <label>Critérios a avaliar</label>
+        <div class="grade-criterios" id="grade-criterios">
+          <label class="criterio-item"><input type="checkbox" class="criterio-checkbox" value="Fundamentação jurídica" checked> Fundamentação jurídica</label>
+          <label class="criterio-item"><input type="checkbox" class="criterio-checkbox" value="Estrutura do rito processual" checked> Estrutura do rito processual</label>
+          <label class="criterio-item"><input type="checkbox" class="criterio-checkbox" value="Técnica de redação" checked> Técnica de redação</label>
+          <label class="criterio-item"><input type="checkbox" class="criterio-checkbox" value="Coesão textual" checked> Coesão textual</label>
+          <label class="criterio-item"><input type="checkbox" class="criterio-checkbox" value="Uso correto de terminologia jurídica" checked> Uso correto de terminologia jurídica</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Tom do comentário</label>
+        <div class="grupo-opcoes" id="grupo-tom">
+          <label class="opcao-radio"><input type="radio" name="tom" value="Rigoroso"> Rigoroso</label>
+          <label class="opcao-radio"><input type="radio" name="tom" value="Construtivo" checked> Construtivo</label>
+          <label class="opcao-radio"><input type="radio" name="tom" value="Motivacional"> Motivacional</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Nível da turma</label>
+        <div class="grupo-opcoes" id="grupo-nivel">
+          <label class="opcao-radio"><input type="radio" name="nivel" value="Iniciante (1º ao 3º semestre)"> Iniciante (1º-3º semestre)</label>
+          <label class="opcao-radio"><input type="radio" name="nivel" value="Intermediário (4º ao 6º semestre)" checked> Intermediário (4º-6º semestre)</label>
+          <label class="opcao-radio"><input type="radio" name="nivel" value="Avançado (7º ao 10º semestre)"> Avançado (7º-10º semestre)</label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="nota-minima">Nota mínima considerada aprovação</label>
+        <div class="campo-inline">
+          <input type="number" id="nota-minima" min="0" max="10" step="0.5" value="6">
+          <span class="dica">de 0 a 10</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Chave de API da Anthropic</h2>
+      <div class="campo">
+        <label for="api-key">Sua chave de API</label>
+        <div class="linha-chave">
+          <input type="password" id="api-key" placeholder="sk-ant-...">
+          <button type="button" class="botao-secundario" id="btn-mostrar-chave">Mostrar</button>
+          <button type="button" class="botao-secundario" id="btn-salvar-chave">Salvar</button>
+          <button type="button" class="botao-secundario" id="btn-remover-chave">Remover</button>
+        </div>
+        <p class="status-chave" id="status-chave"></p>
+      </div>
+      <div class="aviso-chave">
+        <strong>Aviso de segurança:</strong> esta aplicação chama a API da Anthropic diretamente do navegador. Sua chave fica salva apenas neste navegador (armazenamento local) e é enviada diretamente aos servidores da Anthropic — nunca é enviada a nenhum outro servidor, mas fica visível no código-fonte/rede do seu navegador enquanto a página está aberta. Use apenas em computador pessoal e de confiança, nunca em máquina compartilhada, e não use uma chave de produção.
+      </div>
+    </div>
+
+    <div class="botoes-acao">
+      <button id="btn-corrigir" type="button">Corrigir peça</button>
+    </div>
+    <p class="erro-validacao" id="erro-validacao"></p>
+
+    <div class="card" id="bloco-resultado">
+      <h2>Resultado da correção</h2>
+      <div id="conteudo-resultado"></div>
+    </div>
+
+    <footer>Corretor de Peça Processual &mdash; ferramenta de apoio docente. A nota sugerida é apenas isso: uma sugestão. A decisão final é sempre do professor.</footer>
+  </div>
+
+<script>
+  const CHAVE_STORAGE = "corretorPecaProcessual_apiKey";
+
+  const EXEMPLOS = {
+    exemplo1: `EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO DA ___ VARA CÍVEL DA COMARCA FICTÍCIA
+
+MARIA FICTÍCIA DA SILVA, já qualificada nos autos, vem, respeitosamente, à presença de Vossa Excelência, propor a presente AÇÃO DE INDENIZAÇÃO POR DANOS MORAIS COM PEDIDO DE TUTELA DE URGÊNCIA em face de COMÉRCIO FICTÍCIO DE ELETRODOMÉSTICOS LTDA., pelos fatos e fundamentos a seguir expostos.
+
+DOS FATOS: A autora adquiriu um produto na loja ré e, desde então, vem sofrendo com o descumprimento do prazo de entrega prometido, o que já dura mais de 60 dias. Diversas tentativas de contato foram feitas, sem sucesso.
+
+DO DIREITO: O Código de Defesa do Consumidor prevê a responsabilidade do fornecedor por falha na prestação do serviço. O atraso configura descumprimento contratual, e isso já basta para caracterizar o dano moral, que é presumido em situações como essa, sendo desnecessária qualquer outra comprovação.
+
+DA TUTELA DE URGÊNCIA: Estão presentes os requisitos legais para a concessão da tutela de urgência, motivo pelo qual requer-se sua concessão, determinando-se que a ré entregue o produto em 24 horas, sob pena de multa diária.
+
+DOS PEDIDOS: a) a concessão da tutela de urgência, nos termos acima; b) a citação da ré; c) a procedência dos pedidos, condenando a ré ao pagamento de indenização por danos morais; d) custas e honorários. Dá-se à causa o valor de R$ 5.000,00.`,
+    exemplo2: `EXCELENTÍSSIMO(A) SENHOR(A) DESEMBARGADOR(A) RELATOR(A) DO TRIBUNAL DE JUSTIÇA FICTÍCIO
+
+JOÃO FICTÍCIO DOS SANTOS, já qualificado nos autos da Ação de Guarda nº 0002020-30.2023.8.00.0000, não se conformando com a r. sentença que fixou a guarda unilateral em favor da genitora, vem, tempestivamente, interpor o presente RECURSO DE APELAÇÃO, pelas razões a seguir.
+
+DOS FATOS: O apelante sempre participou ativamente da rotina do filho, e não concorda com a decisão do juízo a quo. A sentença não levou em conta a realidade da família.
+
+DO DIREITO: A guarda compartilhada é o que há de mais moderno no Direito de Família, e deveria ter sido aplicada neste caso, pois é sempre melhor para a criança. O juízo errou ao não aplicar esse entendimento.
+
+DO PEDIDO: Requer-se o provimento do recurso, para reformar a sentença e fixar a guarda compartilhada, nos termos do que já vem sendo decidido em outros processos parecidos.`,
+  };
+
+  const selectExemplo = document.getElementById("select-exemplo");
+  const pecaTexto = document.getElementById("peca-texto");
+  const apiKeyInput = document.getElementById("api-key");
+  const btnMostrarChave = document.getElementById("btn-mostrar-chave");
+  const btnSalvarChave = document.getElementById("btn-salvar-chave");
+  const btnRemoverChave = document.getElementById("btn-remover-chave");
+  const statusChave = document.getElementById("status-chave");
+  const notaMinimaInput = document.getElementById("nota-minima");
+  const btnCorrigir = document.getElementById("btn-corrigir");
+  const erroValidacao = document.getElementById("erro-validacao");
+  const blocoResultado = document.getElementById("bloco-resultado");
+  const conteudoResultado = document.getElementById("conteudo-resultado");
+
+  const chaveSalva = localStorage.getItem(CHAVE_STORAGE);
+  if (chaveSalva) {
+    apiKeyInput.value = chaveSalva;
+    statusChave.textContent = "Chave carregada deste navegador.";
+  }
+
+  selectExemplo.addEventListener("change", () => {
+    const valor = selectExemplo.value;
+    if (valor === "exemplo1" || valor === "exemplo2") {
+      pecaTexto.value = EXEMPLOS[valor];
+    } else {
+      pecaTexto.value = "";
+    }
+  });
+
+  btnMostrarChave.addEventListener("click", () => {
+    const oculto = apiKeyInput.type === "password";
+    apiKeyInput.type = oculto ? "text" : "password";
+    btnMostrarChave.textContent = oculto ? "Ocultar" : "Mostrar";
+  });
+
+  btnSalvarChave.addEventListener("click", () => {
+    const valor = apiKeyInput.value.trim();
+    if (!valor) {
+      statusChave.textContent = "Digite uma chave antes de salvar.";
+      return;
+    }
+    localStorage.setItem(CHAVE_STORAGE, valor);
+    statusChave.textContent = "Chave salva neste navegador.";
+  });
+
+  btnRemoverChave.addEventListener("click", () => {
+    localStorage.removeItem(CHAVE_STORAGE);
+    apiKeyInput.value = "";
+    statusChave.textContent = "Chave removida.";
+  });
+
+  function obterCriteriosSelecionados() {
+    return Array.from(document.querySelectorAll(".criterio-checkbox:checked")).map(
+      (el) => el.value
+    );
+  }
+
+  function obterValorRadio(nome) {
+    const el = document.querySelector(`input[name="${nome}"]:checked`);
+    return el ? el.value : "";
+  }
+
+  function montarSystemPrompt(tom, nivel) {
+    return `Você é um avaliador experiente de banca examinadora de Direito, responsável por corrigir peças processuais produzidas por estudantes.
+Adote um tom ${tom.toLowerCase()} nos seus comentários.
+Calibre suas expectativas e o nível de exigência para uma turma classificada como: ${nivel}.
+Avalie a peça processual fornecida pelo usuário estritamente segundo os critérios que ele indicar, sem avaliar critérios não solicitados.
+Atribua ao final uma única nota de 0 (zero) a 10 (dez) para a peça como um todo, refletindo o desempenho nos critérios avaliados, e uma justificativa breve para essa nota.`;
+  }
+
+  function montarUserPrompt(criterios, pecaTextoValor) {
+    const listaCriterios = criterios.map((c) => `- ${c}`).join("\n");
+    return `Critérios a avaliar nesta peça:
+${listaCriterios}
+
+Peça processual a ser corrigida:
+"""
+${pecaTextoValor}
+"""
+
+Para cada um dos critérios listados acima, escreva um comentário específico e objetivo sobre o desempenho da peça naquele critério. Em seguida, atribua uma nota única de 0 a 10 para a peça como um todo e uma justificativa breve para essa nota.`;
+  }
+
+  function esquemaResposta() {
+    return {
+      type: "json_schema",
+      schema: {
+        type: "object",
+        properties: {
+          criterios: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                nome: { type: "string" },
+                comentario: { type: "string" },
+              },
+              required: ["nome", "comentario"],
+              additionalProperties: false,
+            },
+          },
+          nota: { type: "number" },
+          justificativa: { type: "string" },
+        },
+        required: ["criterios", "nota", "justificativa"],
+        additionalProperties: false,
+      },
+    };
+  }
+
+  function mostrarCarregando() {
+    blocoResultado.classList.add("visivel");
+    conteudoResultado.innerHTML = `
+      <div class="carregando">
+        <div class="spinner"></div>
+        <p>Corrigindo peça com a IA... isso pode levar alguns segundos.</p>
+      </div>`;
+    blocoResultado.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function mostrarErro(titulo, detalhe) {
+    conteudoResultado.innerHTML = `
+      <div class="erro-resultado">
+        <strong>${titulo}</strong>
+        ${detalhe}
+      </div>`;
+  }
+
+  function escaparHtml(texto) {
+    const div = document.createElement("div");
+    div.textContent = texto;
+    return div.innerHTML;
+  }
+
+  function mostrarResultado(dados, notaMinima) {
+    const nota = Number(dados.nota);
+    const aprovado = nota >= notaMinima;
+
+    const criteriosHtml = (dados.criterios || [])
+      .map(
+        (c) => `
+        <div class="criterio-resultado">
+          <h3>${escaparHtml(c.nome || "")}</h3>
+          <p>${escaparHtml(c.comentario || "")}</p>
+        </div>`
+      )
+      .join("");
+
+    conteudoResultado.innerHTML = `
+      ${criteriosHtml}
+      <div class="bloco-nota ${aprovado ? "aprovado" : "reprovado"}">
+        <div class="nota-valor">${isNaN(nota) ? "-" : nota.toFixed(1)}</div>
+        <div class="nota-texto">
+          <div class="nota-selo">${aprovado ? "Acima da nota mínima" : "Abaixo da nota mínima"} (${notaMinima})</div>
+          <p class="nota-justificativa">${escaparHtml(dados.justificativa || "")}</p>
+        </div>
+      </div>`;
+  }
+
+  btnCorrigir.addEventListener("click", async () => {
+    erroValidacao.textContent = "";
+
+    const apiKey = apiKeyInput.value.trim();
+    const pecaValor = pecaTexto.value.trim();
+    const criterios = obterCriteriosSelecionados();
+    const tom = obterValorRadio("tom");
+    const nivel = obterValorRadio("nivel");
+    const notaMinima = parseFloat(notaMinimaInput.value);
+
+    if (!apiKey) {
+      erroValidacao.textContent = "Insira sua chave de API da Anthropic antes de corrigir.";
+      return;
+    }
+    if (!pecaValor) {
+      erroValidacao.textContent = "Cole o texto de uma peça ou selecione um exemplo.";
+      return;
+    }
+    if (criterios.length === 0) {
+      erroValidacao.textContent = "Selecione ao menos um critério de correção.";
+      return;
+    }
+    if (isNaN(notaMinima) || notaMinima < 0 || notaMinima > 10) {
+      erroValidacao.textContent = "A nota mínima deve ser um número entre 0 e 10.";
+      return;
+    }
+
+    btnCorrigir.disabled = true;
+    btnCorrigir.textContent = "Corrigindo...";
+    mostrarCarregando();
+
+    const requestBody = {
+      model: "claude-opus-5",
+      max_tokens: 2048,
+      system: montarSystemPrompt(tom, nivel),
+      messages: [
+        { role: "user", content: montarUserPrompt(criterios, pecaValor) },
+      ],
+      output_config: {
+        effort: "medium",
+        format: esquemaResposta(),
+      },
+    };
+
+    try {
+      const resposta = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerous-direct-browser-access": "true",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!resposta.ok) {
+        let mensagemErro = `Erro HTTP ${resposta.status}.`;
+        try {
+          const corpoErro = await resposta.json();
+          if (corpoErro && corpoErro.error && corpoErro.error.message) {
+            mensagemErro = corpoErro.error.message;
+          }
+        } catch (e) {
+          // corpo de erro não era JSON válido; mantém mensagem genérica
+        }
+
+        if (resposta.status === 401) {
+          mostrarErro(
+            "Chave de API inválida",
+            "A chave inserida não foi aceita pela Anthropic. Verifique se ela está correta e ativa, e tente novamente."
+          );
+        } else if (resposta.status === 429) {
+          const retryAfter = resposta.headers.get("retry-after");
+          mostrarErro(
+            "Limite de requisições atingido",
+            retryAfter
+              ? `Aguarde cerca de ${retryAfter} segundos e tente novamente.`
+              : "Aguarde alguns instantes e tente novamente."
+          );
+        } else if (resposta.status >= 500) {
+          mostrarErro(
+            "Erro temporário no servidor da Anthropic",
+            "Tente novamente em alguns instantes."
+          );
+        } else {
+          mostrarErro("Erro na requisição", escaparHtml(mensagemErro));
+        }
+        return;
+      }
+
+      const dadosResposta = await resposta.json();
+
+      if (dadosResposta.stop_reason === "refusal") {
+        mostrarErro(
+          "A IA não processou esta solicitação",
+          "O modelo recusou gerar uma resposta para este conteúdo. Tente novamente ou revise o texto da peça."
+        );
+        return;
+      }
+
+      const blocoTexto = (dadosResposta.content || []).find(
+        (bloco) => bloco.type === "text"
+      );
+
+      if (!blocoTexto) {
+        mostrarErro(
+          "Resposta vazia",
+          "A API não retornou um texto de correção. Tente novamente."
+        );
+        return;
+      }
+
+      let dadosCorrecao;
+      try {
+        dadosCorrecao = JSON.parse(blocoTexto.text);
+      } catch (e) {
+        mostrarErro(
+          "Não foi possível interpretar a resposta da IA",
+          `Resposta recebida (formato inesperado):<br><pre style="white-space:pre-wrap;">${escaparHtml(
+            blocoTexto.text
+          )}</pre>`
+        );
+        return;
+      }
+
+      mostrarResultado(dadosCorrecao, notaMinima);
+    } catch (erroRede) {
+      mostrarErro(
+        "Não foi possível conectar à API da Anthropic",
+        `Verifique sua conexão com a internet e se a chave de API está correta. Detalhe técnico: ${escaparHtml(
+          erroRede.message
+        )}`
+      );
+    } finally {
+      btnCorrigir.disabled = false;
+      btnCorrigir.textContent = "Corrigir peça";
+    }
+  });
+</script>
+</body>
+</html>
