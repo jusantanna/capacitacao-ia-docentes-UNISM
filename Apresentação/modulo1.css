@@ -1083,7 +1083,8 @@ table.compare tbody tr:hover td { background: rgba(var(--accent-a-rgb), 0.1); }
 .slide.active .stat-row > *:nth-child(4),
 .slide.active .decision-list > *:nth-child(4) { animation-delay: 0.49s; }
 .slide.active ul.bullets li:nth-child(5),
-.slide.active .glossary > *:nth-child(5) { animation-delay: 0.58s; }
+.slide.active .glossary > *:nth-child(5),
+.slide.active .process-row > *:nth-child(5) { animation-delay: 0.58s; }
 .slide.active ul.bullets li:nth-child(n+6),
 .slide.active .glossary > *:nth-child(n+6) { animation-delay: 0.66s; }
 
