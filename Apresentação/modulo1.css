@@ -171,6 +171,17 @@ body.printing { overflow: visible; }
   box-shadow: 0 0 10px 2px var(--cyan-glow);
 }
 
+/* ---------- Content label (small caps sub-label above a big statement) ---------- */
+.content-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-300);
+  margin-bottom: clamp(0.8rem, 2vh, 1.4rem);
+}
+
 /* ---------- Headings ---------- */
 h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; margin: 0; line-height: 1.12; }
 
