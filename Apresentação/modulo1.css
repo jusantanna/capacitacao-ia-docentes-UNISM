@@ -868,17 +868,15 @@ table.compare tbody tr:hover td { background: rgba(var(--accent-a-rgb), 0.1); }
   gap: 0.4rem;
 }
 
-/* ---------- Closing slide — evaluation QR code card ---------- */
-.qr-eval-card {
-  gap: clamp(0.7rem, 1.6vh, 1.1rem) !important;
-  padding: clamp(1.1rem, 2.2vw, 1.7rem) clamp(1.3rem, 2.6vw, 2rem) !important;
-}
+/* ---------- Closing slide — evaluation QR code (centered, single column) ---------- */
 .qr-eval-label {
+  display: block;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
   color: var(--ink-100);
   text-align: center;
+  margin-bottom: clamp(0.6rem, 1.4vh, 0.9rem);
 }
 .qr-eval-label .accent {
   background: linear-gradient(90deg, var(--cyan-300), var(--blue-500));
@@ -888,15 +886,19 @@ table.compare tbody tr:hover td { background: rgba(var(--accent-a-rgb), 0.1); }
 }
 .qr-eval-image {
   display: block;
-  width: clamp(250px, 22vw, 300px);
-  height: clamp(250px, 22vw, 300px);
+  margin: 0 auto;
+  width: clamp(210px, 20vh, 250px);
+  height: clamp(210px, 20vh, 250px);
   border-radius: 0.9rem;
   box-shadow: 0 0 28px var(--cyan-glow);
 }
 .qr-eval-hint {
-  font-size: clamp(0.75rem, 1vw, 0.88rem);
+  display: block;
+  font-size: clamp(0.72rem, 0.95vw, 0.85rem);
   color: var(--ink-500);
   text-align: center;
+  margin-top: clamp(0.4rem, 1vh, 0.7rem);
+  margin-bottom: clamp(0.9rem, 2vh, 1.3rem);
 }
 
 /* ============================================================
